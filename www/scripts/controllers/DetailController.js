@@ -30,6 +30,9 @@ define( [ '../app' ] , function ( app ) {
                 FetchVolService.getVolData( $stateParams.id ).then( function ( result ) {
                     $scope.detail = result;
                     $scope.loading = false;
+                } , function ( r ) {
+                    alert( r );
+                    history.back();
                 } );
 
                 $scope.$on( 'switch' , function ( event , area ) {

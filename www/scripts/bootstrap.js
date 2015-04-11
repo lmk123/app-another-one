@@ -56,7 +56,8 @@ define( [
 
     // 公用的服务和指令列在下面。
     // 这些模块因为都依赖 app.js ，所以得声明在这里而不是 app.js 里。
-    'services/FetchVolService'
+    'services/FetchVolService',
+    'services/NavService'
 ] , function ( angular ) {
     angular.module( 'bootstrap' , [ 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] ); // 注意：app 模块只能放在最后一个，因为它依赖前面的第三方模块！
     angular.bootstrap( document , [ 'bootstrap' ] );

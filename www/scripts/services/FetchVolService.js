@@ -1,7 +1,7 @@
 define( [ '../app' ] , function ( app ) {
     app.factory( 'FetchVolService' , [
-        '$http' ,
-        function ( $http ) {
+        '$http' , '$q' ,
+        function ( $http , $q ) {
             var monthMap = {
                 Jan : 1 ,
                 Feb : 2 ,
@@ -22,8 +22,10 @@ define( [ '../app' ] , function ( app ) {
                         if ( match ) {
                             return Number( match[ 1 ] );
                         } else {
-                            return '查询最新版本失败，请检查网络设置';
+                            return $q.reject( '查询最新版本失败，请检查网络设置' );
                         }
+                    } , function () {
+                        return $q.reject( '网络连接错误，请检查你的网络设置' );
                     } );
                 } ,
                 getVolData : function ( id ) {
@@ -37,7 +39,13 @@ define( [ '../app' ] , function ( app ) {
                             result.id = Number( id );
                             return result;
                         } else {
-                            return '查询失败';
+                            return $q.reject( '获取文章内容时出错，请检查你的网络设置' );
+                        }
+                    } , function ( response ) {
+                        if ( 404 === response.status ) {
+                            return $q.reject( '此次文章不存在' );
+                        } else {
+                            return $q.reject( '获取文章内容时出错，请检查你的网络设置' );
                         }
                     } );
                 }

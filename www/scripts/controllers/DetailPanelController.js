@@ -1,13 +1,16 @@
 define( [ '../app' ] , function ( app ) {
     app.controller( 'DetailPanelController' , [
-        '$scope' ,
-        function ( $scope ) {
-            $scope.showMenu = function () {
-                alert( 'todo' );
-            };
+        '$scope' , 'NavService' ,
+        function ( $scope , NavService ) {
             $scope.switchTo = function ( area ) {
                 $scope.$broadcast( 'switch' , area );
-            }
+            };
+            $scope.next = function () {
+                NavService.next();
+            };
+            $scope.prev = function () {
+                NavService.prev();
+            };
         }
     ] );
 } );
