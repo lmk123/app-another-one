@@ -1,0 +1,8 @@
+.cordova
+hooks
+platforms
+plugins
+www/res
+config.xml
+node_modules
+build
