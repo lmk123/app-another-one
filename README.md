@@ -21,7 +21,11 @@
  + 样式：最后再完善样式，使它方便在手机上浏览
  
 ## 在线预览
- 待完成
+
+ 1. 先将你的 Chrome 设置为允许发起跨域请求（[如何设置？](https://www.baidu.com/s?wd=chrome+跨域)）
+ 2. 在 Chrome 里打开 http://lmk123.github.io/app-another-one/www/
+ 
+在线预览比较慢，另外，一些手机上才有的功能会被替换或将无法使用。
  
 ## 声明
  本程序仅供学习交流所用，程序的所有内容均来自[『一个』官方网站](http://www.wufazhuce.com/one/)，内容版权归『一个』所有。
