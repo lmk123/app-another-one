@@ -1,3 +1,6 @@
+/**
+ * 内容导航服务。
+ */
 define( [ '../app' ] , function ( app ) {
     app.factory( 'NavService' , [
         '$state' , '$stateParams' ,

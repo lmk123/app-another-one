@@ -27,12 +27,15 @@ define( [ '../app' ] , function ( app ) {
 
                 $scope.loading = true;
                 $scope.current = '.vol-index';
-                FetchVolService.getVolData( $stateParams.id ).then( function ( result ) {
-                    $scope.detail = result;
-                    $scope.loading = false;
-                } , function ( r ) {
-                    alert( r );
-                    history.back();
+
+                FetchVolService.then( function ( fetchVol ) {
+                    fetchVol.getVolData( $stateParams.id ).then( function ( result ) {
+                        $scope.detail = result;
+                        $scope.loading = false;
+                    } , function ( r ) {
+                        alert( r );
+                        history.back();
+                    } );
                 } );
 
                 $scope.$on( 'switch' , function ( event , area ) {
