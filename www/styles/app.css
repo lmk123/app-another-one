@@ -1,0 +1,12 @@
+img {
+    max-width: 100%;
+}
+
+
+.vol-section {
+    display: none;
+}
+
+.vol-section.vol-show {
+    display: block;
+}
