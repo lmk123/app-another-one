@@ -20,12 +20,12 @@
  + 已阅功能：记录哪几期是已经读过的，还可以将读过的某一期重新标记为未阅读状态
  + 样式：最后再完善样式，使它方便在手机上浏览
  
- ## 在线预览
+## 在线预览
  待完成
  
- ## 声明
+## 声明
  本程序仅供学习交流所用，程序的所有内容均来自[『一个』官方网站](http://www.wufazhuce.com/one/)，内容版权归『一个』所有。
  
- ## 许可
+## 许可
  [GNU General Public License Version 3](https://www.gnu.org/licenses/gpl.html) 或更高版本。
  
