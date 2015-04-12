@@ -27,7 +27,9 @@
 > 使用这个被弃用的 API 是因为 [PhoneGap](http://phonegap.com/) 使用此 API 读写手机的文件系统，详情见 [FileSystem 插件文档](http://plugins.cordova.io/#/package/org.apache.cordova.file)。
 
  1. 先将你的 Chrome 设置为允许发起跨域请求（[如何设置？](https://www.baidu.com/s?wd=chrome+跨域)）
- 2. 在 Chrome 里打开 http://lmk123.github.io/app-another-one/www/
+ 2. 在新打开的标签页里按下 F12 弹出开发人员工具，并单击左上角的手机图标
+ 3. 选择一个你喜欢的手机模式
+ 4. 在地址栏输入 http://lmk123.github.io/app-another-one/www/
  
 在线预览比较慢，另外，一些手机上才有的功能会被替换或将无法使用。
  
