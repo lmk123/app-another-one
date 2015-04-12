@@ -8,7 +8,7 @@ define( [ '../app' ] , function ( app ) {
                 window.requestFileSystem = window.webkitRequestFileSystem;
             }
 
-            if ( requestFileSystem ) {
+            if ( requestFileSystem && navigator.webkitPersistentStorage && navigator.webkitPersistentStorage.requestQuota && window.PERSISTENT ) {
                 navigator.webkitPersistentStorage.requestQuota( 500 * 1024 * 1024 /*500MB*/ , function ( grantedBytes ) {
                     requestFileSystem( PERSISTENT , grantedBytes , function ( fs ) {
                         var factory = {};
