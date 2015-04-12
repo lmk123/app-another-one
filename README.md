@@ -21,7 +21,7 @@
  - [ ] 样式：最后再完善样式，使它方便在手机上浏览
  
 ## 在线预览
-在线预览地址：http://lmk123.github.io/app-another-one/
+在线预览地址：https://lmk123.github.io/app-another-one/
 
 在线预览支持 IE9+ 及其他现代浏览器。如果你使用 Chrome 访问，那么将会使用 [FileSystem API](http://www.html5rocks.com/en/tutorials/file/filesystem/) 缓存数据到本地，这样就可以离线阅读了。
 
