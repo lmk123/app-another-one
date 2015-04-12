@@ -4,7 +4,7 @@ define( [ '../app' ] , function ( app ) {
         function ( $state , $timeout , FetchVolService , NavService ) {
             var waitStart = Date.now();
             FetchVolService.then( function ( fetchVol ) {
-                fetchVol.getLastVolId().then( function ( result ) {
+                fetchVol.getVolId().then( function ( result ) {
                     var waitFor = Date.now() - waitStart ,
                         timeout = 2000 - waitFor;
                     if ( timeout < 0 ) {

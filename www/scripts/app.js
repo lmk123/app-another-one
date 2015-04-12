@@ -5,7 +5,6 @@ define( [ 'angular' ] , function ( angular ) {
         '$stateProvider' ,
         function ( $stateProvider ) {
 
-            // 路由设置
             $stateProvider.state( 'index' , {
                 url : '/' ,
                 templateUrl : 'views/index.html' ,
@@ -19,19 +18,22 @@ define( [ 'angular' ] , function ( angular ) {
                     templateUrl : 'views/detail.html' ,
                     controller : 'DetailPanelController' ,
                     resolve : {
-                        load : loadDeps( [ 'controllers/DetailPanelController' ] )
+                        load : loadDeps( [ 'controllers/DetailPanelController' , 'controllers/MenuController' ] )
                     }
                 } )
                 .state( 'detail.content' , {
-                    url : '/:id' ,
+                    url : '/vol/:id' ,
                     templateUrl : 'views/detail.content.html' ,
                     controller : 'DetailController' ,
                     resolve : {
                         load : loadDeps( [ 'controllers/DetailController' ] )
                     }
+                } )
+                .state( 'about' , {
+                    url : '/about' ,
+                    templateUrl : 'views/about.html'
                 } );
 
-            // 默认路由
             $stateProvider.state( 'otherwise' , {
                 url : '*path' ,
                 template : '' ,

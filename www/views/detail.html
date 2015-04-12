@@ -1,4 +1,18 @@
-<header class="app-header"><span class="app-menu">菜单</span>另『一个』</header>
+<header class="app-header"><span class="app-menu" ng-click="is.showMenu=true">菜单</span>另『一个』</header>
+<div class="app-menu-list" ng-controller="MenuController" ng-show="is.showMenu">
+    <ul>
+        <li>
+            <form ng-submit="jumpTo()">
+                跳转到第 <input ng-model="go" type="number" min="1" /> 期
+                <button type="submit">Go</button>
+            </form>
+        </li>
+        <li onclick="alert('功能正在开发中，尽情期待 :)')">收藏本期内容</li>
+        <li onclick="alert('功能正在开发中，尽情期待 :)')">将本期内容设为未读状态</li>
+        <li><a ui-sref="about">关于另『一个』</a></li>
+        <li ng-click="is.showMenu=false">关闭菜单</li>
+    </ul>
+</div>
 <div ui-view></div>
 <ul class="app-nav clear">
     <li ng-click="next()">下一期</li>

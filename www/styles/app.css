@@ -24,16 +24,16 @@ ul {
     list-style-type: none;
 }
 
-/*¹«ÓÃÀà Start*/
+/*å…¬ç”¨ç±» Start*/
 .clear::after {
     content: '';
     display: block;
     clear: both;
 }
 
-/*¹«ÓÃÀà End*/
+/*å…¬ç”¨ç±» End*/
 
-/*»¶Ó­Ò³ Start*/
+/*æ¬¢è¿é¡µ Start*/
 .app-hello {
     position: absolute;
     width: 100%;
@@ -55,8 +55,8 @@ ul {
     width: 100%;
 }
 
-/*»¶Ó­Ò³ End*/
-/*±êÌâÀ¸ Start*/
+/*æ¬¢è¿é¡µ End*/
+/*æ ‡é¢˜æ  Start*/
 .app-header {
     text-align: center;
     height: 25px;
@@ -73,8 +73,36 @@ ul {
     line-height: normal;
 }
 
-/*±êÌâÀ¸ End*/
-/*µ¼º½À¸ Start*/
+/*æ ‡é¢˜æ  End*/
+/*èœå•æ  Start*/
+.app-menu-list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 3% 5% 0 5%;
+}
+
+.app-menu-list ul {
+    background-color: #fff;
+    padding: 10px 0;
+}
+
+.app-menu-list li {
+    padding: 0 5px;
+    margin: 10px 0;
+}
+
+.app-menu-list input {
+    width: 60px;
+    text-align: center;
+}
+
+/*èœå•æ  End*/
+/*å¯¼èˆªæ  Start*/
 .app-nav {
     position: fixed;
     bottom: 0;
@@ -88,7 +116,7 @@ ul {
 .app-nav :first-child, .app-nav :last-child {
     width: 20%;
     font-size: 1rem;
-    /*ÈÃ×ÖµÄµ×²¿¶ÔÆë*/
+    /*è®©å­—çš„åº•éƒ¨å¯¹é½*/
     line-height: 34px;
     height: 100%;
 }
@@ -108,14 +136,14 @@ ul {
     text-align: center;
 }
 
-/*µ¼º½À¸ End*/
+/*å¯¼èˆªæ  End*/
 
-/*ÄÚÈİÒ³ Start*/
+/*å†…å®¹é¡µ Start*/
 .app-detail {
     position: fixed;
-    top: 25px; /*app-header µÄ¸ß¶È*/
+    top: 25px; /*app-header çš„é«˜åº¦*/
     left: 0;
-    bottom: 30px; /*µ¼º½À¸µÄ¸ß¶È*/
+    bottom: 30px; /*å¯¼èˆªæ çš„é«˜åº¦*/
     width: 94%;
     padding: 3%;
     overflow-y: auto;
@@ -170,4 +198,4 @@ ul {
     display: block;
 }
 
-/*ÄÚÈİÒ³ End*/
+/*å†…å®¹é¡µ End*/

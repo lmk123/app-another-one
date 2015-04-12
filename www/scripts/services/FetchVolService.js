@@ -8,7 +8,12 @@ define( [ '../app' ] , function ( app ) {
             var def = $q.defer();
             dataCache.then( function ( dataCache ) {
 
-                var monthMap = {
+                // 如果域名设置成 http://wufazhuce.com，则要求设备允许跨域访问，
+                // 而七牛云的静态文件都是带有 Access-Control-Allow-Origin:* 响应头的，
+                // 所以灵光一闪，创建了一个七牛云空间并将镜像源设为 http://wufazhuce.com，
+                // 哈哈哈哈哈 233333
+                var DOMAIN    = 'http://7xijgk.com1.z0.glb.clouddn.com' ,
+                    monthMap  = {
                         Jan : 1 ,
                         Feb : 2 ,
                         Mar : 3 ,
@@ -22,53 +27,69 @@ define( [ '../app' ] , function ( app ) {
                         Nov : 11 ,
                         Dec : 12
                     } ,
-                    factory  = {
-                        getLastVolId : function () {
-                            return $http.get( 'http://wufazhuce.com/one/' ).then( function ( response ) {
-                                var match = response.data.match( /<a href="http:\/\/wufazhuce\.com\/one\/vol\.(\d+)">/ );
-                                if ( match ) {
-                                    return Number( match[ 1 ] );
-                                } else {
-                                    return $q.reject( '查询最新版本失败，请检查网络设置' );
-                                }
-                            } , function () {
-                                return $q.reject( '网络连接错误，请检查你的网络设置' );
-                            } );
+                    firstTime = 1349625600000 ,//new Date( 2012 , 9 , 8 ).getTime()，第一期『一个』的日期
+                    oneDay    = 86400000 , // 24 * 60 * 60 * 1000 = 一天是这么多毫秒数
+                    factory   = {
+
+                        /**
+                         * 接收一个日期，返回『一个』的期数
+                         * @param {Date=} date
+                         * @returns {number}
+                         */
+                        getVolId : function ( date ) {
+                            var def = $q.defer();
+                            def.resolve( dateToVolId( date ) );
+                            return def.promise;
                         } ,
                         getVolData : function ( id ) {
                             var def = $q.defer();
-
-                            dataCache.get( id ).then( function ( cache ) {
-                                if ( cache ) {
-                                    def.resolve( cache );
-                                } else {
-                                    $http.get( 'http://wufazhuce.com/one/vol.' + id , {
-                                        responseType : 'document'
-                                    } ).then( function ( response ) {
-                                        var document = response.data ,
-                                            result;
-                                        if ( document.title.indexOf( '一个' ) > 0 ) {
-                                            result = volStringToJson( document );
-                                            result.id = Number( id );
-                                            dataCache.put( id , result );
-                                            def.resolve( result );
-                                        } else {
-                                            return def.reject( '获取文章内容时出错，请检查你的网络设置' );
-                                        }
-                                    } , function ( response ) {
-                                        if ( 404 === response.status ) {
-                                            return def.reject( '此次文章不存在' );
-                                        } else {
-                                            return def.reject( '获取文章内容时出错，请检查你的网络设置' );
-                                        }
-                                    } );
-                                }
-                            } );
-
+                            id = Number( id );
+                            if ( id < 1 || id > dateToVolId() ) {
+                                def.reject( '此次文章不存在' );
+                            } else {
+                                dataCache.get( id ).then( function ( cache ) {
+                                    if ( cache ) {
+                                        def.resolve( cache );
+                                    } else {
+                                        $http.get( DOMAIN + '/one/vol.' + id , {
+                                            responseType : 'document'
+                                        } ).then( function ( response ) {
+                                            var document = response.data ,
+                                                result;
+                                            if ( document.title.indexOf( '一个' ) > 0 ) {
+                                                result = volStringToJson( document );
+                                                result.id = Number( id );
+                                                dataCache.put( id , result );
+                                                def.resolve( result );
+                                            } else {
+                                                return def.reject( '获取文章内容时出错，请检查你的网络设置' );
+                                            }
+                                        } , function ( response ) {
+                                            if ( 404 === response.status ) {
+                                                return def.reject( '此次文章不存在' );
+                                            } else {
+                                                return def.reject( '获取文章内容时出错，请检查你的网络设置' );
+                                            }
+                                        } );
+                                    }
+                                } );
+                            }
                             return def.promise;
                         }
                     };
                 def.resolve( factory );
+
+                /**
+                 * 给定日期，返回那天的『一个』期数
+                 * @param {Date=} date
+                 * @returns {number}
+                 */
+                function dateToVolId( date ) {
+                    if ( !date ) {
+                        date = new Date();
+                    }
+                    return ( new Date( date.getFullYear() , date.getMonth() , date.getDate() ).getTime() - firstTime) / oneDay + 1;
+                }
 
                 /**
                  * 从文档对象模型中提取数据
@@ -131,7 +152,11 @@ define( [ '../app' ] , function ( app ) {
                      */
                     function splitIndexImgTitleAndAuthor( text ) {
                         var titleAndAuthor = text.trim().split( '\n' ) ,
-                            authroIn       = titleAndAuthor[ 1 ];
+                            authroIn;
+                        if ( 1 === titleAndAuthor.length ) { // 第24期的插画没有标题
+                            titleAndAuthor.unshift( '' );
+                        }
+                        authroIn = titleAndAuthor[ 1 ];
                         data.index.imgTitle = titleAndAuthor[ 0 ];
                         data.index.imgAuthor = authroIn.slice( 0 , authroIn.indexOf( ' ' ) );
                     }
@@ -146,7 +171,8 @@ define( [ '../app' ] , function ( app ) {
                     }
 
                     /**
-                     * 整理文章内容
+                     * 整理文章内容。
+                     * todo 文章内容偶尔会有图片，例如第28期。
                      * @param {string} text
                      */
                     function articleContent( text ) {
@@ -166,5 +192,4 @@ define( [ '../app' ] , function ( app ) {
             return def.promise;
         }
     ] );
-} )
-;
+} );

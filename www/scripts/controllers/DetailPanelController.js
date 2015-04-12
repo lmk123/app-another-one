@@ -11,6 +11,9 @@ define( [ '../app' ] , function ( app ) {
             $scope.prev = function () {
                 NavService.prev();
             };
+            $scope.is = {
+                showMenu : false
+            };
         }
     ] );
 } );
