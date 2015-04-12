@@ -1,7 +1,166 @@
+* {
+    box-sizing: content-box;
+}
+
+html {
+    font-family: "Microsoft YaHei", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+ul, p, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    text-indent: 2em;
+}
+
 img {
     max-width: 100%;
 }
 
+ul {
+    list-style-type: none;
+}
+
+/*公用类 Start*/
+.clear::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*公用类 End*/
+
+/*欢迎页 Start*/
+.app-hello {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.app-hello-msg {
+    font-size: 2rem;
+    margin-top: 100px;
+}
+
+.app-hello-me {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+}
+
+/*欢迎页 End*/
+/*标题栏 Start*/
+.app-header {
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    position: relative;
+    font-size: 1.2rem;
+}
+
+.app-menu {
+    position: absolute;
+    right: 3%;
+    bottom: 0;
+    font-size: 1rem;
+    line-height: normal;
+}
+
+/*标题栏 End*/
+/*导航栏 Start*/
+.app-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1.2rem;
+}
+
+.app-nav :first-child, .app-nav :last-child {
+    width: 20%;
+    font-size: 1rem;
+    /*让字的底部对齐*/
+    line-height: 34px;
+    height: 100%;
+}
+
+.app-nav :last-child {
+    float: right;
+}
+
+.app-nav ul {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.app-nav li {
+    float: left;
+    width: 15%;
+    text-align: center;
+}
+
+/*导航栏 End*/
+
+/*内容页 Start*/
+.app-detail {
+    position: fixed;
+    top: 25px; /*app-header 的高度*/
+    left: 0;
+    bottom: 30px; /*导航栏的高度*/
+    width: 94%;
+    padding: 3%;
+    overflow-y: auto;
+}
+
+.vol-title {
+    margin-bottom: 5px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.vol-time {
+    float: right;
+    height: 100%;
+    line-height: 28px;
+}
+
+.vol-id {
+    font-size: 1.3rem;
+}
+
+.vol-index-bar {
+    margin-bottom: 5px;
+}
+
+.vol-index-title {
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+.vol-index-author {
+    font-size: 0.9rem;
+}
+
+.vol-content p, .vol-content div {
+    margin: 10px 0;
+}
+
+.vol-article h2 {
+    margin-top: 15px;
+}
+
+.vol-article-author {
+    font-size: 0.9rem;
+}
 
 .vol-section {
     display: none;
@@ -10,3 +169,5 @@ img {
 .vol-section.vol-show {
     display: block;
 }
+
+/*内容页 End*/

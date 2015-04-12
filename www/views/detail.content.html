@@ -1,21 +1,34 @@
-<div switch-to>
-    <header>第{{detail.id}}期<span>{{detail.date.year}}年{{detail.date.month}}月{{detail.date.day}}日</span></header>
+<div class="app-detail" switch-to>
+    <!--期数与时间 Start-->
+    <header class="vol-title clear">
+        <span class="vol-time">{{detail.date.year}}年{{detail.date.month}}月{{detail.date.day}}日</span>
+        <span class="vol-id">第{{detail.id}}期</span>
+    </header>
+    <!--期数与时间 End-->
+    <!--首页 Start-->
     <div class="vol-section vol-index">
         <div><img ng-src="{{detail.index.imgUrl}}" alt="{{detail.index.imgTitle}}" /></div>
-        <div>{{detail.index.imgTitle}} {{detail.index.imgAuthor}}</div>
-        <div>{{detail.index.text}}</div>
+        <div class="vol-index-bar">
+            <span class="vol-index-title">{{detail.index.imgTitle}}</span>
+            <span class="vol-index-author">{{detail.index.imgAuthor}}</span>
+        </div>
+        <p>{{detail.index.text}}</p>
     </div>
+    <!--首页 End-->
+    <!-- 文章 Start-->
     <div class="vol-section vol-article">
-        <div>{{detail.article.summary}}</div>
+        <p><q>{{detail.article.summary}}</q></p>
+
         <h2>{{detail.article.title}}</h2>
 
-        <div>{{detail.article.author}}</div>
-        <div ng-bind-html="detail.article.content"></div>
+        <div class="vol-article-author">{{detail.article.author}}</div>
+        <div class="vol-content" ng-bind-html="detail.article.content"></div>
     </div>
-    <div class="vol-section vol-qa">
+    <!-- 文章 End-->
+    <div class="vol-section vol-qa vol-content">
         <h4>{{detail.qa.q_title}}</h4>
 
-        <div>{{detail.qa.question}}</div>
+        <p>{{detail.qa.question}}</p>
         <h4>{{detail.qa.a_title}}</h4>
 
         <div ng-bind-html="detail.qa.answer"></div>
@@ -23,6 +36,7 @@
     <div class="vol-section vol-dx">
         <div><img ng-src="{{detail.dx.imgUrl}}" alt="{{detail.dx.title}}" /></div>
         <h4>{{detail.dx.title}}</h4>
+
         <div>{{detail.dx.summary}}</div>
     </div>
 </div>
