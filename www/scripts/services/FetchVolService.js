@@ -12,7 +12,7 @@ define( [ '../app' ] , function ( app ) {
                 // 而七牛云的静态文件都是带有 Access-Control-Allow-Origin:* 响应头的，
                 // 所以灵光一闪，创建了一个七牛云空间并将镜像源设为 http://wufazhuce.com，
                 // 哈哈哈哈哈 233333
-                var DOMAIN    = 'http://7xijgk.com1.z0.glb.clouddn.com' ,
+                var DOMAIN    = 'https://dn-another-one.qbox.me' ,
                     monthMap  = {
                         Jan : 1 ,
                         Feb : 2 ,
