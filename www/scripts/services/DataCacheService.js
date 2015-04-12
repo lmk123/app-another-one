@@ -55,6 +55,7 @@ define( [ '../app' ] , function ( app ) {
                         } else {
                             def.resolve( false );
                         }
+                        return def.promise;
                     } ,
                     put : function ( key , value ) {
                         memCache.put( key , value );
