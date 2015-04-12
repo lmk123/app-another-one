@@ -1,4 +1,5 @@
 require.config( {
+    waitSeconds : 0 ,
     paths : {
         angular : '../vendor/angular/angular'
     } ,
