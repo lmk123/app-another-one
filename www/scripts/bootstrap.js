@@ -1,10 +1,12 @@
 require.config( {
     waitSeconds : 0 ,
     paths : {
+        jquery : '../vendor/jquery/jquery' ,
         angular : '../vendor/angular/angular'
     } ,
     shim : {
         angular : {
+            deps : [ 'jquery' ] ,
             exports : 'angular' ,
             init : function () {
                 // ---------------------重要代码段！------------------------------
@@ -39,7 +41,8 @@ require.config( {
         } ,
         '../vendor/angular/angular-ui-router' : [ 'angular' ] ,
         '../vendor/angular/angular-sanitize' : [ 'angular' ] ,
-        '../vendor/angular/angular-touch' : [ 'angular' ]
+        '../vendor/angular/angular-touch' : [ 'angular' ] ,
+        '../vendor/bootstrap/bootstrap' : [ 'jquery' ]
     } ,
     map : {
         '*' : {
@@ -53,6 +56,7 @@ define( [
     '../vendor/angular/angular-ui-router' ,
     '../vendor/angular/angular-sanitize' ,
     '../vendor/angular/angular-touch' ,
+    '../vendor/bootstrap/bootstrap' ,
     './app' ,
 
     // 公用的服务和指令列在下面。

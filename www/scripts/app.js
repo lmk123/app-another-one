@@ -15,7 +15,7 @@ define( [ 'angular' ] , function ( angular ) {
             } )
                 .state( 'detail' , {
                     abstract : true ,
-                    templateUrl : 'views/detail.html' ,
+                    templateUrl : 'views/vol.html' ,
                     controller : 'DetailPanelController' ,
                     resolve : {
                         load : loadDeps( [ 'controllers/DetailPanelController' , 'controllers/MenuController' ] )

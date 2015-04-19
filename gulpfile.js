@@ -5,7 +5,7 @@ var gulp       = require( 'gulp' ) ,
     Revall     = require( 'gulp-rev-all' ) ,
     revall     = new Revall( {
         transformFilename : function ( file , hash ) {
-            return hash.slice( 0 , 8 ) + file.path.slice( file.path.lastIndexOf( '.' ) );
+            return hash + file.path.slice( file.path.lastIndexOf( '.' ) );
         }
     } ) ,
     changed    = require( 'gulp-changed' ) ,
