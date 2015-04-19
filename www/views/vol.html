@@ -1,23 +1,29 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <span class="navbar-brand">第845期</span><span class="glyphicon glyphicon-heart"></span>
-
-        <div class="pull-right btn-group">
-            <button class="btn btn-default">
-                <span class="glyphicon glyphicon-menu-left"></span>
-            </button>
-            <button class="btn btn-default">
-                <span class="glyphicon glyphicon-menu-right"></span>
-            </button>
-            <button class="btn btn-default">
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
-            </button>
-        </div>
+        <span class="navbar-brand margin-left-fix">第845期
+            <span class="glyphicon glyphicon-heart" style="font-size: 12px;"></span>
+        </span>
+        <!--为了保证在 小于768 时也是右浮动的，所以不能用 .navbar-right，得自己手写-->
+        <ul class="nav navbar-nav float-fix">
+            <li class="btn-group">
+                <!--<div>-->
+                <button class="btn btn-default navbar-btn">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </button>
+                <button class="btn btn-default navbar-btn">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </button>
+                <button class="btn btn-default navbar-btn">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+                <!--</div>-->
+            </li>
+        </ul>
     </div>
 </nav>
 <!--<main style="margin-top: 60px;margin-bottom: 40px;">-->
 <main>
-    <div style="height: 55px">just height</div>
+    <div style="height: 55px">&nbsp;<!--just a height--></div>
     <section>
         <div class="container">
             <img class="img-responsive" src="http://pic.yupoo.com/hanapp/EA83Fcvh/custom.jpg" />
@@ -35,13 +41,55 @@
             <blockquote>
                 <p>这里是文章的见解</p>
             </blockquote>
-            <h2>文章标题<small>作者名称</small></h2>
+            <h2>文章标题
+                <small>作者名称</small>
+            </h2>
+            <div>
+                <p>文章段落</p>
+
+                <p>文章段落</p>
+
+                <p>文章段落</p>
+
+                <p>文章段落</p>
+
+                <p>文章段落</p>
+
+                <p>文章段落</p>
+            </div>
         </div>
     </section>
-    <div style="height: 40px">just height</div>
+    <section>
+        <div class="container">
+            <h3>某某某问：</h3>
+
+            <p>这里是问题</p>
+
+            <h3>某某某答：</h3>
+
+            <p>答案可能有很多行</p>
+
+            <p>答案可能有很多行</p>
+
+            <p>答案可能有很多行</p>
+
+            <p>答案可能有很多行</p>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <img class="img-responsive" src="http://pic.yupoo.com/hanapp/EA83Fcvh/custom.jpg" />
+
+            <h3>这里是东西的名字
+                <small>作者？</small>
+            </h3>
+            <p>东西的描述balalbalbalblalala</p>
+        </div>
+    </section>
+    <div style="height: 40px">&nbsp;<!--just a height--></div>
 </main>
 
-<nav class="navbar navbar-fixed-bottom" style="min-height: inherit;">
+<nav class="navbar navbar-fixed-bottom" style="min-height: inherit;background-color: #fff;">
     <div class="container">
         <div class="btn-group btn-group-justified">
             <a class="btn">首页</a>

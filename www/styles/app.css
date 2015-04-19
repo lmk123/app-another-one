@@ -19,6 +19,22 @@
 }
 
 /*欢迎页 End*/
+/*顶部导航栏 Start*/
+@media (max-width: 768px) {
+    .margin-left-fix {
+        margin-left: -15px;
+    }
+
+    .float-fix {
+        margin: 0;
+    }
+}
+
+.float-fix {
+    float: right;
+}
+
+/*顶部导航栏 End*/
 /*标题栏 Start*/
 .app-header {
     text-align: center;
