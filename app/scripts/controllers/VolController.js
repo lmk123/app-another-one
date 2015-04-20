@@ -1,4 +1,8 @@
-define( [ '../app' , 'jquery' ] , function ( app , $ ) {
+define( [
+    '../app' , 'jquery' ,
+    '../services/FetchVolFactory' ,
+    '../services/NavService'
+] , function ( app , $ ) {
     app.directive( 'volPanel' , function () {
         return {
             link : function ( scope , element ) {
@@ -25,6 +29,9 @@ define( [ '../app' , 'jquery' ] , function ( app , $ ) {
     app.controller( 'VolController' , [
         '$scope' , '$stateParams' , 'FetchVolFactory' , 'NavService' ,
         function ( $scope , $stateParams , fetchVol , navFactory ) {
+            $scope.showMenu = function () {
+                alert( '菜单正在开发中 :)' );
+            };
             $scope.status = {
                 loading : true ,
                 showMenu : false

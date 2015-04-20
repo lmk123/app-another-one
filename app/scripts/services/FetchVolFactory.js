@@ -1,22 +1,16 @@
-define( [ '../app' ] , function ( app ) {
+define( [ '../app' , './FileSystemFactory' ] , function ( app ) {
     app.factory( 'FetchVolFactory' , [
-        '$http' , '$q' , function ( $http , $q ) {
+        '$http' , '$q' , 'FileSystemFactory' , function ( $http , $q , asyncFs ) {
             var isCordova = 0 !== document.URL.indexOf( 'http' ) ,
                 factory   = {
                     domain : isCordova ? 'http://wufazhuce.com' : 'https://dn-another-one.qbox.me' ,
-                    getLastVolId : function () {
-                        var def = $q.defer();
-                        $http.get( factory.domain + '/one' , {
-                            responseType : 'document'
-                        } ).then( function ( response ) {
-                            var str = response.data.querySelector( '#main-container .corriente .one-titulo a' ).textContent.trim();
-                            def.resolve( Number( str.match( /vol\.(\d+)$/i )[ 1 ] ) );
-                        } , function () {
-                            def.reject();
-                        } );
-                        return def.promise;
-                    } ,
-                    getVolData : function ( id ) {
+
+                    /**
+                     * 通过 http 从远程服务器获取某期内容
+                     * @param {Number} id
+                     * @returns {IPromise<T>}
+                     */
+                    getVolDataFromHttp : function ( id ) {
                         var def = $q.defer();
                         $http.get( factory.domain + '/one/vol.' + id , {
                             responseType : 'document'
@@ -26,36 +20,65 @@ define( [ '../app' ] , function ( app ) {
                             if ( document.title.indexOf( '一个' ) > 0 ) {
                                 result = volDocumentToJson( document );
                                 result.id = Number( id );
-                                //dataCache.put( id , result );
                                 def.resolve( result );
+
+                                // 将文件写入文件系统
+                                asyncFs.then( function ( fs ) {
+                                    fs.writeFile( 'vol' + id + '.txt' , [ JSON.stringify( result ) ] , 'text/plain' );
+                                } );
                             } else {
                                 return def.reject( '获取文章内容时出错，请检查你的网络设置' );
                             }
                         } , function ( response ) {
                             if ( 404 === response.status ) {
-                                return def.reject( '此次文章不存在' );
+                                return def.reject( '没有当期内容' );
                             } else {
                                 return def.reject( '获取文章内容时出错，请检查你的网络设置' );
                             }
                         } );
                         return def.promise;
+                    } ,
+
+                    /**
+                     * 获取某期内容，会先尝试从 file system 中读取，否则从 远程服务器获取
+                     * @param {number} id
+                     * @returns {IPromise<T>}
+                     */
+                    getVolData : function ( id ) {
+                        var def = $q.defer();
+                        asyncFs.then( function ( fs ) {
+                            fs.readFile( 'vol' + id + '.txt' , 'json' ).then( def.resolve , function () {
+                                factory.getVolDataFromHttp( id ).then( def.resolve , def.reject );
+                            } );
+                        } , function () {
+                            factory.getVolDataFromHttp( id ).then( def.resolve , def.reject );
+                        } );
+
+                        return def.promise;
                     }
                 };
 
             if ( isCordova ) {
+                /**
+                 * 如果是在 phone gap 里，则从远程服务器获取当天最新的期数
+                 * @returns {IPromise<T>}
+                 */
                 factory.getLastVolId = function () {
                     var def = $q.defer();
-                    $http.get( factory.domain + '/one' , {
+                    $http.get( factory.domain + '/one?' + Math.random() , {
                         responseType : 'document'
                     } ).then( function ( response ) {
                         var str = response.data.querySelector( '#main-container .corriente .one-titulo a' ).textContent.trim();
                         def.resolve( Number( str.match( /vol\.(\d+)$/i )[ 1 ] ) );
-                    } , function () {
-                        def.reject();
-                    } );
+                    } , def.reject );
                     return def.promise;
                 };
             } else {
+                /**
+                 * 如果不是在 phone gap 里，则通过日期计算出最新期数。
+                 * 由于『一个』在每天晚上十点发布第二天的内容，所以此计算方法可能会延迟一天。
+                 * @returns {IPromise<T>}
+                 */
                 factory.getLastVolId = function () {
                     var def = $q.defer();
                     def.resolve( dateToVolId() );

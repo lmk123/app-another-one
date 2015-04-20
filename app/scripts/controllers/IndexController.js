@@ -1,4 +1,8 @@
-define( [ '../app' ] , function ( app ) {
+define( [
+    '../app' ,
+    '../services/FetchVolFactory' ,
+    '../services/NavService'
+] , function ( app ) {
     app.controller( 'IndexController' , [
         '$state' , '$timeout' , 'FetchVolFactory' , 'NavService' ,
         function ( $state , $timeout , FetchVolService , NavService ) {
