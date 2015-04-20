@@ -21,7 +21,7 @@
  - [ ] 样式：最后再完善样式，使它方便在手机上浏览
  
 ## 在线预览
-在线预览地址：https://lmk123.github.io/app-another-one/
+在线预览地址：http://lmk123.github.io/app-another-one/
  
 ## 声明
  本程序仅供学习交流所用，程序的所有内容均来自[『一个』官方网站](http://www.wufazhuce.com/one/)，内容版权归『一个』所有。
