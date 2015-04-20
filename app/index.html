@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <title></title>
+        <link rel="stylesheet" href="vendor/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="styles/app.css" />
+    </head>
+    <body>
+        <div ui-view>正在加载，请稍候……</div>
+        <!--data-main 中要带上 .js，否则 gulp-rev-all 不会更新引用 -->
+        <script src="vendor/require/require.js" data-main="scripts/bootstrap.js"></script>
+    </body>
+</html>
