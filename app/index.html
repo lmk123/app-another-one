@@ -8,7 +8,11 @@
         <link rel="stylesheet" href="styles/app.css" />
     </head>
     <body>
-        <div ui-view>正在加载，请稍候……</div>
+        <div ui-view>
+            <div class="app-startup-loading text-center">
+                正在加载，请稍候……
+            </div>
+        </div>
         <!--data-main 中要带上 .js，否则 gulp-rev-all 不会更新引用 -->
         <script src="vendor/require/require.js" data-main="scripts/bootstrap.js"></script>
     </body>

@@ -1,3 +1,14 @@
+/*loading 样式 Start*/
+.app-startup-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 200px;
+}
+
+/*loading 样式 End*/
 /*欢迎页 Start*/
 .app-hello {
     position: absolute;
