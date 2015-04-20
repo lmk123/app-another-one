@@ -3,7 +3,6 @@ var gulp       = require( 'gulp' ) ,
     minifyCSS  = require( 'gulp-minify-css' ) ,
     minifyHTML = require( 'gulp-htmlmin' ) ,
     revall     = new (require( 'gulp-rev-all' ))( {
-        dontRenameFile : [ /^\/index\.html$/ ] ,
         transformFilename : function ( file , hash ) {
             return hash + file.path.slice( file.path.lastIndexOf( '.' ) );
         }
