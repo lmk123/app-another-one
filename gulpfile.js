@@ -2,19 +2,19 @@ var gulp       = require( 'gulp' ) ,
     minifyJS   = require( 'gulp-uglify' ) ,
     minifyCSS  = require( 'gulp-minify-css' ) ,
     minifyHTML = require( 'gulp-htmlmin' ) ,
-    Revall     = require( 'gulp-rev-all' ) ,
-    revall     = new Revall( {
+    revall     = new (require( 'gulp-rev-all' ))( {
+        dontRenameFile : [ /^\/index\.html$/ ] ,
         transformFilename : function ( file , hash ) {
-            return hash.slice( 0 , 8 ) + file.path.slice( file.path.lastIndexOf( '.' ) );
+            return hash + file.path.slice( file.path.lastIndexOf( '.' ) );
         }
     } ) ,
     changed    = require( 'gulp-changed' ) ,
     concat     = require( 'gulp-concat' ) ,
     deleteFile = require( 'del' ) ,
 
-    SRC        = 'www' ,
+    SRC        = 'app' ,
     DIST       = 'build' ,
-    CDN        = 'cdn' ,
+    CDN        = 'www' ,
 
     paths      = {
 
@@ -64,18 +64,15 @@ function copy() {
         .pipe( gulp.dest( DIST ) );
 }
 
-/**
- * 重要的方法：给所有文件的文件名加上 md5 并更新引用
- */
 function md5() {
     return gulp.src( DIST + '/**' )
         .pipe( revall.revision() )
-        .pipe( gulp.dest( CDN ) )
-        .pipe( revall.manifestFile() )
         .pipe( gulp.dest( CDN ) );
+    //.pipe( revall.manifestFile() )
+    //.pipe( gulp.dest( CDN ) );
 }
 
-gulp.task( 'md5' , md5 );
+//gulp.task( 'md5' , md5 );
 
 gulp.task( 'clean' , clean );
 
@@ -87,8 +84,4 @@ gulp.task( 'html' , [ 'clean' ] , html );
 
 gulp.task( 'copy' , [ 'clean' ] , copy );
 
-gulp.task( 'default' , [ 'js' , 'css' , 'html' , 'copy' ] , function ( cb ) {
-    md5().on( 'finish' , function () {
-        deleteFile( DIST , cb );
-    } );
-} );
+gulp.task( 'default' , [ 'js' , 'css' , 'html' , 'copy' ] , md5 );

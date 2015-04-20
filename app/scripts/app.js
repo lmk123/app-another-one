@@ -14,15 +14,14 @@ define( [ 'angular' ] , function ( angular ) {
                 }
             } )
                 .state( 'detail' , {
-                    abstract : true ,
-                    templateUrl : 'views/detail.html' ,
-                    controller : 'DetailPanelController' ,
+                    url : '/vol/:id' ,
+                    templateUrl : 'views/vol.html' ,
+                    controller : 'VolController' ,
                     resolve : {
-                        load : loadDeps( [ 'controllers/DetailPanelController' , 'controllers/MenuController' ] )
+                        load : loadDeps( [ 'controllers/VolController' ] )
                     }
                 } )
                 .state( 'detail.content' , {
-                    url : '/vol/:id' ,
                     templateUrl : 'views/detail.content.html' ,
                     controller : 'DetailController' ,
                     resolve : {

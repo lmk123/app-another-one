@@ -7,13 +7,16 @@ define( [ '../app' ] , function ( app ) {
         function ( $state , $stateParams ) {
             var factory = {
                 go : function ( id ) {
-                    $state.go( 'detail.content' , { id : id } );
+                    $state.go( 'detail' , { id : id } );
                 } ,
                 next : function () {
                     factory.go( Number( $stateParams.id ) + 1 );
                 } ,
                 prev : function () {
                     factory.go( Number( $stateParams.id ) - 1 );
+                } ,
+                back : function () {
+                    history.back();
                 }
             };
             return factory;

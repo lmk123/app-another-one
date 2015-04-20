@@ -1,0 +1,55 @@
+/*欢迎页 Start*/
+.app-hello {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.app-hello-msg {
+    margin-top: 80px;
+}
+
+.app-hello-me {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+}
+
+/*欢迎页 End*/
+/*顶部导航栏 Start*/
+@media (max-width: 768px) {
+    .margin-left-fix {
+        margin-left: -15px;
+    }
+
+    .float-fix {
+        margin: 0;
+    }
+}
+
+.float-fix {
+    float: right;
+}
+
+/*顶部导航栏 End*/
+
+/*内容 Start*/
+#tabs-content > section {
+    display: none;
+}
+
+#tabs-content > section.active {
+    display: block;
+}
+
+/*内容 End*/
+#btn-fav.active {
+    color: red;
+}
+
+.app-text-content > p {
+    text-indent: 2em;
+}
