@@ -42,7 +42,8 @@ require.config( {
         '../vendor/angular/angular-ui-router' : [ 'angular' ] ,
         '../vendor/angular/angular-sanitize' : [ 'angular' ] ,
         '../vendor/angular/angular-touch' : [ 'angular' ] ,
-        '../vendor/bootstrap/bootstrap' : [ 'jquery' ]
+        '../vendor/bootstrap/bootstrap' : [ 'jquery' ] ,
+        '../../test/angular-mocks' : [ 'angular' ]
     } ,
     map : {
         '*' : {
@@ -57,7 +58,10 @@ define( [
     '../vendor/angular/angular-sanitize' ,
     '../vendor/angular/angular-touch' ,
     '../vendor/bootstrap/bootstrap' ,
-    './app'
+    './app' //,
+
+    // 如果要在测试中模拟后台，则需要引用 angular-mocks.js；上线前记得注释掉
+    //'../../test/angular-mocks'
 ] , function ( angular ) {
     angular.module( 'bootstrap' , [ 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] ); // 注意：app 模块只能放在最后一个，因为它依赖前面的第三方模块！
 

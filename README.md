@@ -26,6 +26,11 @@
 
 > 使用这个被弃用的 API 是因为 [PhoneGap](http://phonegap.com/) 使用此 API 读写手机的文件系统，详情见 [ FileSystem 插件文档](http://plugins.cordova.io/#/package/org.apache.cordova.file)。
  
+ ## 端到端测试
+ > 先确保你全局安装了 [Protractor](https://github.com/angular/protractor)
+ 
+ 修改 [test/protractor.conf.js](https://github.com/lmk123/app-another-one/tree/master/test/protractor.conf.js) 里的 `params.testUrlRoot` 属性，然后运行 `npm test`
+ 
 ## 声明
  本程序仅供学习交流所用，内容版权归[『一个』](http://www.wufazhuce.com/one/)所有。
  
