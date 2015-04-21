@@ -15,9 +15,7 @@ exports.config = {
     onPrepare : function () {
         browser.addMockModule( 'bootstrap' , function () {
             if ( angular.mock ) {
-                // 这里的依赖列表就比 bootstrap.js 里面多一个 'ngMockE2E'，
-                // 如果 bootstrap.js 里面的依赖列表变了，那么这边也要同步变动
-                angular.module( 'bootstrap' , [ 'ngMockE2E' , 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] )
+                angular.module( 'bootstrap' , [ 'ngMockE2E' , 'all' ] )
                     .run( [
                         '$httpBackend' ,
                         function ( $httpBackend ) {
@@ -25,8 +23,6 @@ exports.config = {
                             $httpBackend.whenPOST().passThrough();
                         }
                     ] );
-            } else { // 没有引用 ngMockE2E 时就不 mock 了
-                angular.module( 'bootstrap' , [ 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] );
             }
         } );
     }

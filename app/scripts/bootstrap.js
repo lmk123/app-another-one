@@ -58,12 +58,13 @@ define( [
     '../vendor/angular/angular-sanitize' ,
     '../vendor/angular/angular-touch' ,
     '../vendor/bootstrap/bootstrap' ,
-    './app' //,
 
     // 如果要在测试中模拟后台，则需要引用 angular-mocks.js；上线前记得注释掉
-    //'../../test/angular-mocks'
+    //'../../test/angular-mocks' ,
+
+    './app'
 ] , function ( angular ) {
-    angular.module( 'bootstrap' , [ 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] ); // 注意：app 模块只能放在最后一个，因为它依赖前面的第三方模块！
+    angular.module( 'all' , [ 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] ); // 注意：app 模块只能放在最后一个，因为它依赖前面的第三方模块！
 
     if ( 0 !== document.URL.indexOf( 'http' ) ) {
         document.addEventListener( 'deviceready' , bootstrap )
@@ -72,6 +73,8 @@ define( [
     }
 
     function bootstrap() {
+        // 单独组织一个 all 模块的原因是，在 e2e 测试中可以 mock 掉 bootstrap 这个模块而不需要同步更新上面的依赖数组
+        angular.module( 'bootstrap' , [ 'all' ] );
         angular.bootstrap( document , [ 'bootstrap' ] , {
             strictDi : true
         } );
