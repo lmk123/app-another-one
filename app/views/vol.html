@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <span class="navbar-brand margin-left-fix">第{{volData.id}}期
+        <span class="navbar-brand app-margin-left-fix">第{{volData.id}}期
             <span id="btn-fav" vol-fav class="glyphicon glyphicon-heart" style="font-size: 12px;"></span>
         </span>
         <!--为了保证在 小于768 时也是右浮动的，所以不能用 .navbar-right，得自己手写-->
-        <ul class="nav navbar-nav float-fix">
+        <ul class="nav navbar-nav app-float-fix">
             <li class="btn-group">
                 <!--<div>-->
                 <button class="btn btn-default navbar-btn" title="上一期" ng-click="prev()">
@@ -25,7 +25,7 @@
     <div style="height: 60px">&nbsp;<!--just a height--></div>
     <div class="container text-center app-startup-loading" ng-show="status.loading">正在加载内容，请稍候……</div>
     <div ng-hide="status.loading" id="tabs-content">
-        <section class="active">
+        <section ng-class="{active:1===status.current}">
             <div class="container">
                 <img class="img-responsive" ng-src="{{volData.index.imgUrl}}" alt="{{volData.index.imgTitle}}" />
 
@@ -37,7 +37,7 @@
                 </p>
             </div>
         </section>
-        <section>
+        <section ng-class="{active:2===status.current}">
             <div class="container">
                 <blockquote ng-show="volData.article.summary">
                     <p>{{volData.article.summary}}</p>
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section ng-class="{active:3===status.current}">
             <div class="container">
                 <h3>{{volData.qa.q_title}}</h3>
 
@@ -60,7 +60,7 @@
                 <div ng-bind-html="volData.qa.answer" class="app-text-content"></div>
             </div>
         </section>
-        <section>
+        <section ng-class="{active:4===status.current}">
             <div class="container" ng-show="volData.dx.title">
                 <img class="img-responsive" ng-src="{{volData.dx.imgUrl}}" alt="{{volDatal.dx.title}}" />
 
@@ -76,13 +76,14 @@
     <div style="height: 40px">&nbsp;<!--just a height--></div>
 </main>
 
-<nav id="tabs-panel" vol-panel class="navbar navbar-fixed-bottom" style="min-height: inherit;background-color: #fff;">
+<!-- vol-panel -->
+<nav id="tabs-panel" class="navbar navbar-fixed-bottom" style="min-height: inherit;background-color: #fff;">
     <div class="container">
         <div class="btn-group btn-group-justified">
-            <a class="btn active">首页</a>
-            <a class="btn">文章</a>
-            <a class="btn">问题</a>
-            <a class="btn">东西</a>
+            <a class="btn" ng-class="{active:1===status.current}" ng-click="switchTo(1)">首页</a>
+            <a class="btn" ng-class="{active:2===status.current}" ng-click="switchTo(2)">文章</a>
+            <a class="btn" ng-class="{active:3===status.current}" ng-click="switchTo(3)">问题</a>
+            <a class="btn" ng-class="{active:4===status.current}" ng-click="switchTo(4)">东西</a>
         </div>
     </div>
 </nav>

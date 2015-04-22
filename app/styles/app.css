@@ -1,3 +1,5 @@
+/*为了区别 bootstrap 的样式，所以所有的 css 类都加上了 app-* 前缀*/
+
 /*loading 样式 Start*/
 .app-startup-loading {
     position: absolute;
@@ -32,16 +34,16 @@
 /*欢迎页 End*/
 /*顶部导航栏 Start*/
 @media (max-width: 768px) {
-    .margin-left-fix {
+    .app-margin-left-fix {
         margin-left: -15px;
     }
 
-    .float-fix {
+    .app-float-fix {
         margin: 0;
     }
 }
 
-.float-fix {
+.app-float-fix {
     float: right;
 }
 
