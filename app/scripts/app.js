@@ -21,6 +21,12 @@ define( [ 'angular' ] , function ( angular ) {
                     resolve : {
                         load : loadDeps( [ 'controllers/VolController' ] )
                     }
+                } ).state( 'fav' , {
+                    url : '/fav' ,
+                    templateUrl : 'views/fav.html'
+                } ).state( 'about' , {
+                    url : '/about' ,
+                    templateUrl : 'views/about.html'
                 } );
 
             $stateProvider.state( 'otherwise' , {
@@ -50,6 +56,29 @@ define( [ 'angular' ] , function ( angular ) {
                     }
                 ];
             }
+        }
+    ] );
+
+    // 当在首次打开的页面点返回上一页时，跳转到当天最新期数，
+    // 否则就直接返回上一页
+    app.run( [
+        '$rootScope' , 'NavService' , function ( $r , nav ) {
+            var isFirstPage = true ,
+                count       = 0;
+            $r.goBack = function () {
+                if ( isFirstPage ) {
+                    nav.goLastVol();
+                } else {
+                    history.back();
+                }
+            };
+            var remove = $r.$on( '$stateChangeSuccess' , function () {
+                count += 1;
+                if ( 2 === count ) {
+                    isFirstPage = false;
+                    remove();
+                }
+            } );
         }
     ] );
 

@@ -34,17 +34,25 @@
 /*欢迎页 End*/
 /*顶部导航栏 Start*/
 @media (max-width: 768px) {
-    .app-margin-left-fix {
-        margin-left: -15px;
-    }
-
-    .app-float-fix {
+    .app-nav-right {
         margin: 0;
     }
-}
 
-.app-float-fix {
-    float: right;
+    .app-margin-left-fix, .app-dropdown-list > li > a {
+        padding-left: 0 !important;
+    }
+
+    .app-nav-group, .app-dropdown-btn {
+        position: absolute;
+    }
+
+    .app-nav-group {
+        right: 50px;
+    }
+
+    .app-dropdown-btn {
+        right: 0;
+    }
 }
 
 /*顶部导航栏 End*/

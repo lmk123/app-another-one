@@ -21,7 +21,8 @@ define( [
             $scope.status = {
                 loading : true ,
                 showMenu : false ,
-                current : 1
+                current : 1 ,
+                is404 : false
             };
 
             $scope.switchTo = function ( number ) {
@@ -38,10 +39,10 @@ define( [
 
             fetchVol.getVolData( $stateParams.id ).then( function ( data ) {
                 $scope.volData = data;
-                $scope.status.loading = false;
             } , function () {
-                alert( 'todo 文章不存在' );
-                navFactory.back();
+                $scope.status.is404 = true;
+            } ).finally( function () {
+                $scope.status.loading = false;
             } );
         }
     ] );
