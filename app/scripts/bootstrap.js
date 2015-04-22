@@ -1,12 +1,12 @@
 require.config( {
     waitSeconds : 0 ,
     paths : {
-        jquery : '../vendor/jquery/jquery' ,
+        //jquery : '../vendor/jquery/jquery' ,
         angular : '../vendor/angular/angular'
     } ,
     shim : {
         angular : {
-            deps : [ 'jquery' ] ,
+            //deps : [ 'jquery' ] ,
             exports : 'angular' ,
             init : function () {
                 // ---------------------重要代码段！------------------------------
@@ -42,7 +42,8 @@ require.config( {
         '../vendor/angular/angular-ui-router' : [ 'angular' ] ,
         '../vendor/angular/angular-sanitize' : [ 'angular' ] ,
         '../vendor/angular/angular-touch' : [ 'angular' ] ,
-        '../vendor/bootstrap/bootstrap' : [ 'jquery' ] ,
+        '../vendor/angular/ui-bootstrap-tpls' : [ 'angular' ] ,
+        //'../vendor/bootstrap/bootstrap' : [ 'jquery' ] ,
         '../../test/angular-mocks' : [ 'angular' ]
     } ,
     map : {
@@ -57,7 +58,8 @@ define( [
     '../vendor/angular/angular-ui-router' ,
     '../vendor/angular/angular-sanitize' ,
     '../vendor/angular/angular-touch' ,
-    '../vendor/bootstrap/bootstrap' ,
+    '../vendor/angular/ui-bootstrap-tpls' ,
+    //'../vendor/bootstrap/bootstrap' ,
 
     // 如果要在测试中模拟后台，则需要引用 angular-mocks.js；上线前记得注释掉
     //'../../test/angular-mocks' ,
@@ -65,7 +67,7 @@ define( [
     './app' ,
     './services/NavService'
 ] , function ( angular ) {
-    angular.module( 'all' , [ 'ui.router' , 'ngSanitize' , 'ngTouch' , 'app' ] ); // 注意：app 模块只能放在最后一个，因为它依赖前面的第三方模块！
+    angular.module( 'all' , [ 'ui.router' , 'ui.bootstrap' , 'ngSanitize' , 'ngTouch' , 'app' ] ); // 注意：app 模块只能放在最后一个，因为它依赖前面的第三方模块！
 
     if ( 0 !== document.URL.indexOf( 'http' ) ) {
         document.addEventListener( 'deviceready' , bootstrap )

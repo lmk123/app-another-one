@@ -1,20 +1,28 @@
 define( [
-    '../app' , 'jquery' ,
+    '../app' , /*'jquery' ,*/
     '../services/FetchVolFactory' ,
     '../services/NavService'
-] , function ( app , $ ) {
+] , function ( app/* , $*/ ) {
     app.directive( 'volFav' , function () {
         return {
             link : function ( scope , element ) {
-                element.click( function () {
-                    element.toggleClass( 'active' );
+                var ele = element[ 0 ];
+                ele.addEventListener( 'click' , function () {
+                    ele.classList.toggle( 'active' );
                 } );
             }
         };
     } );
     app.controller( 'VolController' , [
-        '$scope' , '$stateParams' , 'FetchVolFactory' , 'NavService' ,
-        function ( $scope , $stateParams , fetchVol , navFactory ) {
+        '$scope' , '$stateParams' , 'FetchVolFactory' , 'NavService' , '$modal' ,
+        function ( $scope , $stateParams , fetchVol , navFactory , $modal ) {
+            $scope.openGoToModal = function () {
+                var modal = $modal.open( {
+                    templateUrl : 'myModalContent.html'
+                } );
+                modal.result.then( navFactory.go );
+            };
+
             $scope.showMenu = function () {
                 alert( '菜单正在开发中 :)' );
             };
@@ -27,7 +35,8 @@ define( [
 
             $scope.switchTo = function ( number ) {
                 $scope.status.current = number;
-                $( 'html, body' ).animate( { scrollTop : 0 } , 500 );
+                //$( 'html, body' ).animate( { scrollTop : 0 } , 500 );
+                window.scrollTo( 0 , 0 );
             };
 
             $scope.volData = {
