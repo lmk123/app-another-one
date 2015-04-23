@@ -43,7 +43,6 @@ require.config( {
         '../vendor/angular/angular-sanitize' : [ 'angular' ] ,
         '../vendor/angular/angular-touch' : [ 'angular' ] ,
         '../vendor/angular/ui-bootstrap-tpls' : [ 'angular' ] ,
-        //'../vendor/bootstrap/bootstrap' : [ 'jquery' ] ,
         '../../test/angular-mocks' : [ 'angular' ]
     } ,
     map : {
@@ -59,7 +58,6 @@ define( [
     '../vendor/angular/angular-sanitize' ,
     '../vendor/angular/angular-touch' ,
     '../vendor/angular/ui-bootstrap-tpls' ,
-    //'../vendor/bootstrap/bootstrap' ,
 
     // 如果要在测试中模拟后台，则需要引用 angular-mocks.js；上线前记得注释掉
     //'../../test/angular-mocks' ,

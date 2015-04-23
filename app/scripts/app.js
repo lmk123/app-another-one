@@ -59,6 +59,15 @@ define( [ 'angular' ] , function ( angular ) {
         }
     ] );
 
+    app.config( [
+        '$tooltipProvider' ,
+        function ( $tooltipProvider ) {
+            $tooltipProvider.setTriggers( {
+                open : 'close'
+            } );
+        }
+    ] );
+
     // 当在首次打开的页面点返回上一页时，跳转到当天最新期数，
     // 否则就直接返回上一页
     app.run( [

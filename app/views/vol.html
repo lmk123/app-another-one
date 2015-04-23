@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <span class="navbar-brand app-margin-left-fix">第{{volData.id}}期
-            <span id="btn-fav" vol-fav class="glyphicon glyphicon-heart" style="font-size: 12px;"></span>
+            <span id="btn-fav" role="button" vol-fav tooltip="{{favMsg}}" tooltip-placement="right" tooltip-trigger="open" class="glyphicon glyphicon-heart" style="font-size: 12px;"></span>
         </span>
 
         <ul class="nav navbar-nav navbar-right app-nav-right">
@@ -20,7 +20,7 @@
                     </button>
                     <ul class="dropdown-menu app-dropdown-list">
                         <li>
-                            <a style="cursor: pointer;" ng-click="openGoToModal()">跳转到……</a>
+                            <a role="button" ng-click="openGoToModal()">跳转到……</a>
                         </li>
                         <li><a ui-sref="fav">我的收藏</a></li>
                         <!--todo 收藏列表-->
@@ -108,10 +108,11 @@
 <script type="text/ng-template" id="myModalContent.html">
     <form ng-submit="$close(wantToVolId)">
         <div class="modal-body">
-            跳转到第<input type="number" ng-model="wantToVolId" required min="1" />期
+            <!-- bug fix：移动设备上 input 与 button:submit 无法获取焦点，见 https://github.com/angular-ui/bootstrap/issues/2017 -->
+            跳转到第<input style="margin:0 3px;width: 60px;" stop-touchend type="number" ng-model="wantToVolId" required min="1" />期
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">确定</button>
+            <button type="submit" class="btn btn-primary" stop-touchend>确定</button>
             <button type="button" class="btn btn-default" ng-click="$dismiss()">取消</button>
         </div>
     </form>

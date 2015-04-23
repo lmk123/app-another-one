@@ -1,18 +1,40 @@
 define( [
-    '../app' , /*'jquery' ,*/
+    '../app' ,
     '../services/FetchVolFactory' ,
     '../services/NavService'
-] , function ( app/* , $*/ ) {
-    app.directive( 'volFav' , function () {
+] , function ( app ) {
+    app.directive( 'stopTouchend' , function () {
         return {
             link : function ( scope , element ) {
-                var ele = element[ 0 ];
-                ele.addEventListener( 'click' , function () {
-                    ele.classList.toggle( 'active' );
+                element.bind( 'touchend' , function ( e ) {
+                    e.stopPropagation();
                 } );
             }
         };
     } );
+    app.directive( 'volFav' , [
+        '$timeout' , function ( $t ) {
+            return {
+                link : function ( scope , element ) {
+                    var timeoutPromise;
+                    scope.favMsg = '1'; //这里不能是空字符串，否则值不会传到 tooltip 指令里面去
+
+                    element.bind( 'click' , function () {
+                        scope.$apply( function () {
+                            scope.favMsg = element.hasClass( 'active' ) ? '已取消收藏' : '收藏成功！';
+                        } );
+                        element.toggleClass( 'active' );
+                        element.triggerHandler( 'open' );
+
+                        $t.cancel( timeoutPromise );
+                        timeoutPromise = $t( function () {
+                            element.triggerHandler( 'close' );
+                        } , 2000 , false );
+                    } );
+                }
+            };
+        }
+    ] );
     app.controller( 'VolController' , [
         '$scope' , '$stateParams' , 'FetchVolFactory' , 'NavService' , '$modal' ,
         function ( $scope , $stateParams , fetchVol , navFactory , $modal ) {
