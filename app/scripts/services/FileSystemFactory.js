@@ -24,6 +24,7 @@ define( [ '../app' ] , function ( app ) {
                         factory.fileReader = function ( fileObj , fileType ) {
                             var reader = new FileReader() ,
                                 def    = $q.defer();
+
                             if ( !fileType ) {
                                 fileType = 'text';
                             }
@@ -43,7 +44,7 @@ define( [ '../app' ] , function ( app ) {
                             } else if ( 'dataUrl' === fileType ) {
                                 reader.readAsDataURL( fileObj );
                             } else {
-                                throw new Error( 'FileSystemFactory.fireReader method Don\'t support fileType "' + fileType + '".' );
+                                throw new Error( 'Method FileSystemFactory.fileReader don\'t support fileType "' + fileType + '".' );
                             }
                             return def.promise;
                         };
@@ -52,11 +53,17 @@ define( [ '../app' ] , function ( app ) {
                          * 读取文件的方法。
                          * @param {string} filename 文件名
                          * @param {string=} fileType 如果是 'file'，则会直接返回 file 对象，否则会传给 factory.fileReader 处理。
+                         * @param {boolean=} isCreate 是否创建
                          * @returns {IPromise<T>}
                          */
-                        factory.readFile = function ( filename , fileType ) {
+                        factory.readFile = function ( filename , fileType , isCreate ) {
                             var def = $q.defer();
-                            root.getFile( filename , { create : false } , function ( fileEntry ) {
+
+                            if ( 'boolean' === typeof fileType ) {
+                                isCreate = fileType;
+                                fileType = '';
+                            }
+                            root.getFile( filename , { create : !!isCreate } , function ( fileEntry ) {
                                 fileEntry.file( function ( file ) {
                                     if ( 'file' === fileType ) {
                                         def.resolve( file );
@@ -72,18 +79,33 @@ define( [ '../app' ] , function ( app ) {
                          * 写入文件的方法。
                          * @param {string} filename 文件名
                          * @param {Array} data 数组数据，直接传给 new Blob
-                         * @param {string} type 文件的 content type 字符串，直接传给 new Blob
+                         * @param {string=} type 文件的 content type 字符串，直接传给 new Blob。默认值为 text/plain
                          * @returns {IPromise<T>}
                          */
                         factory.writeFile = function ( filename , data , type ) {
                             var def = $q.defer();
-                            root.getFile( filename , { create : true } , function ( fileEntry ) {
-                                fileEntry.createWriter( function ( witer ) {
-                                    witer.onerror = def.reject;
-                                    witer.onwriteend = def.resolve;
-                                    witer.write( new Blob( data , { type : type } ) );
+                            if ( !type ) {
+                                type = 'text/plain';
+                            }
+
+                            // We need delete this file first, because the `witer.write()` method is an `append` operation.
+                            factory.deleteFile( filename ).finally( function () {
+                                root.getFile( filename , { create : true } , function ( fileEntry ) {
+                                    fileEntry.createWriter( function ( witer ) {
+                                        witer.onerror = def.reject;
+                                        witer.onwriteend = def.resolve;
+                                        witer.write( new Blob( data , { type : type } ) );
+                                    } );
                                 } );
                             } );
+                            return def.promise;
+                        };
+
+                        factory.deleteFile = function ( filename ) {
+                            var def = $q.defer();
+                            root.getFile( filename , { create : false } , function ( fileEntry ) {
+                                fileEntry.remove( def.resolve , def.reject );
+                            } , def.reject );
                             return def.promise;
                         };
                         asyncFactory.resolve( factory );

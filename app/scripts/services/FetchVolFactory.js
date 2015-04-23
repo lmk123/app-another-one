@@ -24,7 +24,7 @@ define( [ '../app' , './FileSystemFactory' ] , function ( app ) {
 
                                 // 将文件写入文件系统
                                 asyncFs.then( function ( fs ) {
-                                    fs.writeFile( 'vol' + id + '.txt' , [ JSON.stringify( result ) ] , 'text/plain' );
+                                    fs.writeFile( 'vol' + id + '.txt' , [ JSON.stringify( result ) ] );
                                 } );
                             } else {
                                 return def.reject( '获取文章内容时出错，请检查你的网络设置' );
