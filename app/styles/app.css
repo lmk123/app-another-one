@@ -55,6 +55,12 @@
     }
 }
 
+@media (min-width: 768px) {
+    .app-nav-group {
+        margin-right: 8px;
+    }
+}
+
 /*顶部导航栏 End*/
 
 /*内容 Start*/

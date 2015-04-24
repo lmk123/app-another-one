@@ -23,7 +23,11 @@ define( [ 'angular' ] , function ( angular ) {
                     }
                 } ).state( 'fav' , {
                     url : '/fav' ,
-                    templateUrl : 'views/fav.html'
+                    templateUrl : 'views/fav.html',
+                    controller : 'FavController' ,
+                    resolve : {
+                        load : loadDeps( [ 'controllers/FavController' ] )
+                    }
                 } ).state( 'about' , {
                     url : '/about' ,
                     templateUrl : 'views/about.html'
@@ -62,6 +66,7 @@ define( [ 'angular' ] , function ( angular ) {
     app.config( [
         '$tooltipProvider' ,
         function ( $tooltipProvider ) {
+            // This trigger use in VolController.js
             $tooltipProvider.setTriggers( {
                 open : 'close'
             } );
