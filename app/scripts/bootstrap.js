@@ -52,7 +52,7 @@ require.config( {
     }
 } );
 
-define( [
+require( [
     'angular' ,
     '../vendor/angular/angular-ui-router' ,
     '../vendor/angular/angular-sanitize' ,
