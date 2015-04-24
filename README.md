@@ -1,5 +1,5 @@
 # Another One
-Another One is an unofficial mobile app for [『The One』](http://wufazhuce.com/one/).
+Another One is an unofficial mobile app for [『The One』](http://wufazhuce.com/one/). [What is this?](#what-is-the-one)
 
 ## Feature
 
