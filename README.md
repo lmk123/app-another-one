@@ -1,12 +1,12 @@
 # Another One
-Another One is an unofficial mobile app for [『The One』](http://wufazhuce.com/one/), which is the one of my favourite online and literary magazine. [『The One』](http://wufazhuce.com/one/) published one photo , one article and one question every day, and I use its [official mobile app](http://shouji.baidu.com/software/item?docid=7662760) every day to read these content.
+Another One is an unofficial mobile app for [『The One』](http://wufazhuce.com/one/).
 
 ## Feature
 
 The feature (and the different of the official app) is:
 
  + It provide all the previous volumes. The official app just provide the latest 10 volumes.
- + Since you read the one of volume once, the content of that volume will save in your device, so after that, you can read it even if you are offline.
+ + Since you read one of volumes once, the content of that volume will save in your device, so after that, you can read it even if you are offline.
  + You can collect your favourite volume into the _Favourite List_.
 
 ## Preview Online
@@ -20,3 +20,6 @@ Online version support IE9+ and other modern browser. Beware only **Chrome** sup
  
 ## License
  [GNU General Public License Version 3](https://www.gnu.org/licenses/gpl.html) or higher version.
+
+#### What is 『The One』?
+It is one of my favourite online and literary magazine. It published one photo , one article and one question every day as one volume, and I use its [official mobile app](http://shouji.baidu.com/software/item?docid=7662760) to read these.
