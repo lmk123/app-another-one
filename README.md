@@ -22,4 +22,4 @@ Online version support IE9+ and other modern browser. Beware only **Chrome** sup
  [GNU General Public License Version 3](https://www.gnu.org/licenses/gpl.html) or higher version.
 
 #### What is 『The One』?
-It is one of my favourite online and literary magazine. It published one photo , one article and one question every day as one volume, and I use its [official mobile app](http://shouji.baidu.com/software/item?docid=7662760) to read these.
+It is one of my favourite online and literary magazine, founded by [Han Han](http://en.wikipedia.org/wiki/Han_Han). It published one photo , one article and one question every day as one volume, and I use its [official mobile app](http://shouji.baidu.com/software/item?docid=7662760) to read these.
