@@ -1,5 +1,5 @@
 # Another One
-Another One is an unofficial mobile app for [『The One』](http://wufazhuce.com/one/), which is the one of my favourite online and literary magazine. [『The One』](http://wufazhuce.com/one/) published one photo , one article and one question every day, and I use its [mobile app](http://shouji.baidu.com/software/item?docid=7662760) every day to read these content.
+Another One is an unofficial mobile app for [『The One』](http://wufazhuce.com/one/), which is the one of my favourite online and literary magazine. [『The One』](http://wufazhuce.com/one/) published one photo , one article and one question every day, and I use its [official mobile app](http://shouji.baidu.com/software/item?docid=7662760) every day to read these content.
 
 ## Feature
 
