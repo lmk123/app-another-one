@@ -5,5 +5,3 @@ plugins
 config.xml
 node_modules
 build
-cdn
-www

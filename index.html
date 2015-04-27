@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>Online Preview</title>
+        <style>
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            iframe {
+                display: block;
+                margin: 0 auto;
+                border: 1px solid #000;
+            }
+
+            #switchModel {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .phone {
+                width: 320px;
+                height: 568px;
+            }
+
+            .tablet {
+                width: 1024px;
+                height: 768px;
+            }
+
+            .pc {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="switchModel">
+            <h2>Online Preview for Another One</h2>
+
+            <div>
+                Switch model:
+                <button data-class="phone">Phone</button>
+                <button data-class="tablet">Tablet</button>
+                <button data-class="pc">Desktop</button>
+            </div>
+            <div>You also can use your mobile device scan below QR code to direct visit it.</div>
+            <img src="http://qr.liantu.com/api.php?text=http://lmk123.github.io/app-another-one/www/a6fb4f3eb5fc0925768974d6c1335a90.html" alt="QR code load fail" />
+
+            <p>
+                This project is <a href="https://github.com/lmk123/app-another-one">hosted on Github</a>.
+            </p>
+        </div>
+        <iframe class="phone" src="www/a6fb4f3eb5fc0925768974d6c1335a90.html"></iframe>
+        <script>
+            (function ( document ) {
+                var iframe = document.getElementsByTagName( 'iframe' )[ 0 ] ,
+                    s      = document.getElementById( 'switchModel' );
+
+                s.addEventListener( 'click' , function ( e ) {
+                    var c = e.target.getAttribute( 'data-class' );
+                    if ( c ) {
+                        iframe.className = c;
+                    }
+                } );
+            }( document ));
+        </script>
+    </body>
+</html>

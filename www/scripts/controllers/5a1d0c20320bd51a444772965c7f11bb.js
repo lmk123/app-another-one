@@ -1,0 +1,1 @@
+define(["../6e867381f6333fc9c95b78691e5477b1","../services/1d072cba260c30508d01b426e459ceea","../services/02ef515fd305838ee668a6f91a8c05ae"],function(e){e.controller("IndexController",["$state","$timeout","FetchVolFactory","NavService",function(e,t,o,n){var c=Date.now();o.getLastVolId().then(function(e){var o=Date.now()-c,r=2e3-o;0>r&&(r=0),t(function(){n.go(e)},r)})}])});

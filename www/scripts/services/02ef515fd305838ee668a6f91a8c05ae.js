@@ -1,0 +1,1 @@
+define(["../6e867381f6333fc9c95b78691e5477b1","./1d072cba260c30508d01b426e459ceea"],function(t){t.factory("NavService",["$state","$stateParams","FetchVolFactory",function(t,o,e){var n={go:function(o){t.go("detail",{id:o})},goLastVol:function(){e.getLastVolId().then(n.go)},next:function(){n.go(Number(o.id)+1)},prev:function(){n.go(Number(o.id)-1)}};return n}])});
