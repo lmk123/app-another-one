@@ -1,0 +1,1 @@
+angular.module("app.modules.favourite",[["services/ee1787cd36dfe120a8008da7ad986bd9.js"]]).controller("FavController",["$scope","FavouriteFactory",function(o,n){o.clearList=function(){confirm("你确定要清空收藏列表吗？")&&n.clear().then(function(){o.list=[]})},o.list=[],o.loading=!0,n.read(!0)["finally"](function(){o.loading=!1}).then(function(n){o.list=n},function(){o.doNotSupport=!0})}]);

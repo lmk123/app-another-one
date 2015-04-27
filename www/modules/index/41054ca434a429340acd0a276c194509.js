@@ -1,0 +1,1 @@
+angular.module("app.modules.index",[["services/b33fa362cc8a5f0fefc2b2c7bfd23a61.js","services/de6dc2e5c367fb0a55bbee5505331005.js"]]).controller("IndexController",["$state","$timeout","FetchVolFactory","NavService",function(e,o,t,n){var a=Date.now();t.getLastVolId().then(function(e){var t=Date.now()-a,r=2e3-t;0>r&&(r=0),o(function(){n.go(e)},r)})}]);

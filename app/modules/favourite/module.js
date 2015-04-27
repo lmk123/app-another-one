@@ -1,4 +1,4 @@
-angular.module( 'app.favourite' , [
+angular.module( 'app.modules.favourite' , [
     [ 'services/FavouriteFactory.js' ]
 ] ).controller( 'FavController' , [
     '$scope' ,

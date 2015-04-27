@@ -1,4 +1,4 @@
-angular.module( 'app.index' , [
+angular.module( 'app.modules.index' , [
     [
         'services/NavService.js' ,
         'services/FetchVolFactory.js'

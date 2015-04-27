@@ -3,6 +3,7 @@ var gulp       = require( 'gulp' ) ,
     minifyCSS  = require( 'gulp-minify-css' ) ,
     minifyHTML = require( 'gulp-htmlmin' ) ,
     revall     = new (require( 'gulp-rev-all' ))( {
+        //dontRenameFile : [ /^\/index\.html$/ ] ,
         transformFilename : function ( file , hash ) {
             return hash + file.path.slice( file.path.lastIndexOf( '.' ) );
         }
@@ -11,6 +12,7 @@ var gulp       = require( 'gulp' ) ,
     concat     = require( 'gulp-concat' ) ,
     deleteFile = require( 'del' ) ,
 
+    VENDORS    = 'app-level-vendors.js' ,
     SRC        = 'app' ,
     DIST       = 'build' ,
     CDN        = 'www' ,
@@ -63,6 +65,20 @@ function copy() {
         .pipe( gulp.dest( DIST ) );
 }
 
+function concatVendors( done ) {
+    var fs          = require( 'fs' ) ,
+        fileString  = fs.readFileSync( DIST + '/' + VENDORS , { encoding : 'utf8' } ) ,
+        vendorsList = JSON.parse( fileString.match( /\[[^\]]+\]/ )[ 0 ] );
+
+    gulp
+        .src( vendorsList.map( function ( v ) {
+            return DIST + '/' + v;
+        } ) )
+        .pipe( concat( VENDORS ) )
+        .pipe( gulp.dest( DIST ) )
+        .on( 'finish' , done );
+}
+
 function md5() {
     return gulp.src( DIST + '/**' )
         .pipe( revall.revision() )
@@ -83,4 +99,6 @@ gulp.task( 'html' , [ 'clean' ] , html );
 
 gulp.task( 'copy' , [ 'clean' ] , copy );
 
-gulp.task( 'default' , [ 'js' , 'css' , 'html' , 'copy' ] , md5 );
+gulp.task( 'default' , [ 'js' , 'css' , 'html' , 'copy' ] , function () {
+    concatVendors( md5 );
+} );

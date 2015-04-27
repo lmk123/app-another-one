@@ -1,5 +1,5 @@
 angular.module( 'app.services.FetchVolFactory' , [
-    ['services/FileSystemFactory.js']
+    [ 'services/FileSystemFactory.js' ]
 ] ).factory( 'FetchVolFactory' , [
     '$http' , '$q' , 'FileSystemFactory' , function ( $http , $q , asyncFs ) {
         var isCordova = 0 !== document.URL.indexOf( 'http' ) ,

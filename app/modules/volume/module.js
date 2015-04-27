@@ -1,4 +1,4 @@
-angular.module( 'app.volume' , [
+angular.module( 'app.moudles.volume' , [
     [ 'services/FetchVolFactory.js' , 'services/NavService.js' , 'services/FavouriteFactory.js' ]
 ] ).directive( 'stopTouchend' , function () {
     return {
