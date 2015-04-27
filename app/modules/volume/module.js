@@ -1,19 +1,15 @@
-define( [
-    '../app' ,
-    '../services/FetchVolFactory' ,
-    '../services/NavService' ,
-    '../services/FavouriteFactory'
-] , function ( app ) {
-    app.directive( 'stopTouchend' , function () {
-        return {
-            link : function ( scope , element ) {
-                element.bind( 'touchend' , function ( e ) {
-                    e.stopPropagation();
-                } );
-            }
-        };
-    } );
-    app.directive( 'volFav' , [
+angular.module( 'app.volume' , [
+    [ 'services/FetchVolFactory.js' , 'services/NavService.js' , 'services/FavouriteFactory.js' ]
+] ).directive( 'stopTouchend' , function () {
+    return {
+        link : function ( scope , element ) {
+            element.bind( 'touchend' , function ( e ) {
+                e.stopPropagation();
+            } );
+        }
+    };
+} )
+    .directive( 'volFav' , [
         '$timeout' , 'FavouriteFactory' , '$q' , function ( $t , favourite , $q ) {
             return {
                 link : function ( scope , element ) {
@@ -51,8 +47,8 @@ define( [
                 }
             };
         }
-    ] );
-    app.controller( 'VolController' , [
+    ] )
+    .controller( 'VolController' , [
         '$scope' , '$stateParams' , 'FetchVolFactory' , 'NavService' , '$modal' ,
         function ( $scope , $stateParams , fetchVol , navFactory , $modal ) {
             $scope.openGoToModal = function () {
@@ -94,4 +90,3 @@ define( [
             } );
         }
     ] );
-} );
