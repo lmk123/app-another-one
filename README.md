@@ -13,7 +13,14 @@ The feature (and the different of the official app) is:
 
 http://lmk123.github.io/app-another-one/
 
-Online version support IE9+ and other modern browser. Beware only **Chrome** support the _Volume Cache_ and _Favourite List_ feature.
+Online version support IE9+ and other modern browser, but only **Chrome** support the _Volume Cache_ and _Favourite List_ feature.
+
+## Build to APK file
+Another One use PhoneGap to build to apk file. It requires one plugin only: [org.apache.cordova.file](http://plugins.cordova.io/#/package/org.apache.cordova.file).
+
+ 1. Run `gulp`
+ 2. Change the value of `src` attribute on node `content` in `config.xml`
+ 3. Run `cordova build`
  
 ## Statement
  This program is only made for learning, the copyright of all the content of volumes belongs to [『The One』](http://www.wufazhuce.com/one/).
