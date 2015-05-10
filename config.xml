@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.github.lmk123.app-another-one" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>另一个</name>
+    <description>
+        『一个』的非官方手机客户端。
+    </description>
+    <author email="milk.lee@qq.com" href="https://github.com/lmk123">
+        Milk Lee
+    </author>
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <content src="5d1de4c14e221887115da492ac72a239.html" />
+    <access origin="*" />
+</widget>
