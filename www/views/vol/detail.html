@@ -1,0 +1,64 @@
+<ion-view ng-controller="VolDetailCtrl">
+    <ion-header-bar>
+        <h1 class="title">第{{model.id}}期</h1>
+    </ion-header-bar>
+    <ion-spinner ng-show="context.loading"></ion-spinner>
+    <ion-pane ng-hide="context.loading">
+        <p ng-show="context.is404">这一期内容还没有发布！</p>
+
+        <ion-slide-box show-pager="false" style="height: 100%">
+            <ion-slide>
+                <ion-content>
+                    <img width="100%" ng-src="{{model.index.imgUrl}}" alt="{{model.index.imgTitle}}" />
+
+                    <div class="padding">
+                        <h3>{{model.index.imgTitle}}
+                            <small>{{model.index.imgAuthor}}</small>
+                        </h3>
+                        <p>
+                            {{model.index.text}}
+                        </p>
+                    </div>
+                </ion-content>
+            </ion-slide>
+            <ion-slide>
+                <ion-content class="padding">
+                    <blockquote ng-show="model.article.summary">
+                        <p>{{model.article.summary}}</p>
+                    </blockquote>
+                    <h2>{{model.article.title}}
+                        <small>{{model.article.author}}</small>
+                    </h2>
+                    <div ng-bind-html="model.article.content" class="app-text-content">
+                    </div>
+                </ion-content>
+            </ion-slide>
+            <ion-slide>
+                <ion-content class="padding">
+                    <h3>{{model.qa.q_title}}</h3>
+
+                    <p>{{model.qa.question}}</p>
+
+                    <h3>{{model.qa.a_title}}</h3>
+
+                    <div ng-bind-html="model.qa.answer" class="app-text-content"></div>
+                </ion-content>
+            </ion-slide>
+            <ion-slide>
+                <ion-content class="padding">
+                    <div ng-show="model.dx.title">
+                        <img class="img-responsive" ng-src="{{model.dx.imgUrl}}" alt="{{model.dx.title}}" />
+
+                        <h3>{{model.dx.title}}</h3>
+
+                        <p>{{model.dx.summary}}</p>
+                    </div>
+                    <div ng-hide="model.dx.title">
+                        第{{model.id}}期没有东西板块 :)
+                    </div>
+                </ion-content>
+            </ion-slide>
+        </ion-slide-box>
+
+    </ion-pane>
+</ion-view>
