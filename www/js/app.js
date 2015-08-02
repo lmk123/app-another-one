@@ -16,7 +16,7 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                         }
                     ]
                 } )
-                .state( 'detail' , {
+                .state( 'vol-detail' , {
                     url : '/vol/{id:int}' ,
                     templateUrl : 'views/vol/detail.html'
                 } );
@@ -353,40 +353,48 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                  * 跳转到某一期内容
                  * @param {Number} id - 那一期内容的 id 号
                  * @param {Boolean} [isReplace=false] - 是否要替换历史记录
+                 * @returns {*|promise|void}
                  */
                 go : function ( id , isReplace ) {
-                    $state.go( 'detail' , { id : id } , { location : isReplace ? 'replace' : true } );
+                    return $state.go( 'vol-detail' , { id : id } , { location : isReplace ? 'replace' : true } );
                 } ,
                 next : function () {
-                    factory.go( Number( $stateParams.id ) + 1 );
+                    return factory.go( Number( $stateParams.id ) + 1 );
                 } ,
                 prev : function () {
-                    factory.go( Number( $stateParams.id ) - 1 );
+                    return factory.go( Number( $stateParams.id ) - 1 );
                 }
             };
             return factory;
         }
     ] )
-
+    .controller( 'NavController' , [
+        '$scope' , 'NavService' ,
+        function ( $scope , nav ) {
+            $scope.next = nav.next;
+            $scope.prev = nav.prev;
+        }
+    ] )
     .controller( 'VolDetailCtrl' , [
-        '$scope' , '$stateParams' , 'FetchVolFactory' , '$ionicScrollDelegate' , '$timeout' ,
-        function ( $scope , $stateParams , fetchVol , $ionicScrollDelegate , $timeout ) {
+        '$scope' , '$stateParams' , 'FetchVolFactory' ,
+        function ( $scope , $stateParams , fetchVol ) {
             $scope.context = {
                 loading : true ,
                 is404 : false
             };
-            $scope.model = {
-                id : $stateParams.id
-            };
+            $scope.model = {};
+
+            $scope.model.id = $stateParams.id;
+
             fetchVol.getVolData( $stateParams.id ).then( function ( data ) {
                 $scope.model = data;
             } , function () {
                 $scope.context.is404 = true;
             } ).finally( function () {
                 $scope.context.loading = false;
-                $timeout( function () {
-                    $ionicScrollDelegate.resize();
-                } );
+                //$timeout( function () {
+                //    $ionicScrollDelegate.resize();
+                //} );
             } );
         }
     ] )

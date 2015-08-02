@@ -8,7 +8,25 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <ion-nav-view></ion-nav-view>
+        <ion-side-menus enable-menu-with-back-views="true">
+            <ion-side-menu side="left" expose-aside-when="large">
+                ff
+            </ion-side-menu>
+            <ion-side-menu-content ng-controller="NavController">
+                <ion-nav-bar>
+                    <ion-nav-title>
+                    </ion-nav-title>
+                    <ion-nav-buttons side="left">
+                        <button type="button" class="button icon ion-navicon-round" menu-toggle="left"></button>
+                    </ion-nav-buttons>
+                    <ion-nav-buttons side="right">
+                        <button type="button" class="button icon ion-ios-arrow-left" on-tap="prev()"></button>
+                        <button type="button" class="button icon ion-ios-arrow-right" on-tap="next()"></button>
+                    </ion-nav-buttons>
+                </ion-nav-bar>
+                <ion-nav-view></ion-nav-view>
+            </ion-side-menu-content>
+        </ion-side-menus>
         <script src="cordova.js"></script>
         <script src="lib/Dexie.js"></script>
         <script src="lib/ionic/js/ionic.bundle.js"></script>
