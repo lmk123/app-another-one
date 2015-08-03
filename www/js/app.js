@@ -437,6 +437,41 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
             } );
         }
     ] )
+    .controller( 'CachedListController' , [
+        '$scope' , 'IndexDBFactory' , '$state' ,
+        function ( $scope , db , $state ) {
+            $scope.context = {
+                favOnly : false ,
+                loading : true
+            };
+
+            $scope.getVolLink = function ( id ) {
+                return $state.href( 'vol.detail' , { id : id } );
+            };
+
+            $scope.getList = function () {
+                $scope.context.loading = true;
+                // IndexedDB 索引的值不能为 Boolean 类型
+                var list = db.vols;
+                if ( $scope.context.favOnly ) {
+                    list = db.vols.where( 'favourite' ).equals( 1 );
+                } else {
+                    list = db.vols;
+                }
+                return list.toArray().then( function ( array ) {
+                    array.sort( function ( a , b ) {
+                        return a.id > b.id ? 1 : -1;
+                    } );
+                    $scope.$applyAsync( function () {
+                        $scope.list = array;
+                        $scope.context.loading = false;
+                    } );
+                } );
+            };
+
+            $scope.getList();
+        }
+    ] )
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
     .run( function () {
         if ( window.cordova && window.cordova.plugins.Keyboard ) {

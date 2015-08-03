@@ -1,5 +1,27 @@
-<ion-view view-title="缓存列表" ng-controller="CacehdListController">
+<ion-view view-title="缓存列表" ng-controller="CachedListController">
+    <ion-header-bar>
+        <div class="buttons">
+            <button class="button">返回</button>
+        </div>
+        <h1 class="title">缓存列表</h1>
+
+        <div class="buttons">
+            <button class="button">搜索</button>
+        </div>
+    </ion-header-bar>
     <ion-content>
-        哈哈哈哈哈哈
+        <div class="card" ng-repeat="item in list">
+            <a class="item item-divider" ng-href="{{getVolLink(item.id)}}">
+                第{{item.id}}期：{{item.index.imgTitle}}
+            </a>
+            <a class="item item-image" ng-href="{{getVolLink(item.id)}}">
+                <img ng-src="{{item.index.imgUrl}}">
+            </a>
+
+            <div class="item item-divider">
+                喜欢
+            </div>
+        </div>
     </ion-content>
 </ion-view>
+
