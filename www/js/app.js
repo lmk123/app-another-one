@@ -16,9 +16,16 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                         }
                     ]
                 } )
-                .state( 'vol-detail' , {
+                .state( 'vol' , {
+                    templateUrl : 'views/vol/container.html'
+                } )
+                .state( 'vol.detail' , {
                     url : '/vol/{id:int}' ,
                     templateUrl : 'views/vol/detail.html'
+                } )
+                .state( 'cached-list' , {
+                    url : '/cached' ,
+                    templateUrl : 'views/cached/list.html'
                 } );
 
             $stateProvider.state( 'otherwise' , {
@@ -374,7 +381,7 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                  * @returns {*|promise|void}
                  */
                 go : function ( id , isReplace ) {
-                    return $state.go( 'vol-detail' , { id : id } , { location : isReplace ? 'replace' : true } );
+                    return $state.go( 'vol.detail' , { id : id } , { location : isReplace ? 'replace' : true } );
                 } ,
                 next : function () {
                     return factory.go( Number( $stateParams.id ) + 1 );
@@ -391,8 +398,13 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
         function ( $scope , $state , $ionicSideMenuDelegate ) {
             $scope.go = function () {
                 $ionicSideMenuDelegate.toggleLeft( false );
-                $state.go( 'vol-detail' , { id : $scope.id } );
+                $state.go( 'vol.detail' , { id : $scope.id } );
             };
+        }
+    ] )
+    .controller( 'CacehdListController' , [
+        '$scope' , function ( $scope ) {
+
         }
     ] )
     .controller( 'NavController' , [
