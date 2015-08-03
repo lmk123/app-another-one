@@ -10,7 +10,17 @@
     <body>
         <ion-side-menus enable-menu-with-back-views="true">
             <ion-side-menu side="left" expose-aside-when="large">
-                ff
+                <div class="list">
+                    <form class="item item-input-inset" ng-controller="JumpController" ng-submit="go()">
+                        <label class="item-input-wrapper">
+                            <input type="number" ng-model="id" min="1" required style="width: 100%;" placeholder="跳转到某一期">
+                        </label>
+                        <button class="button button-small" type="submit">
+                            Go
+                        </button>
+                    </form>
+                    <a href="#" class="item">缓存列表</a>
+                </div>
             </ion-side-menu>
             <ion-side-menu-content ng-controller="NavController">
                 <ion-nav-bar>

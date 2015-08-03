@@ -121,7 +121,8 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
         '$http' , '$q' , 'IndexDBFactory' , function ( $http , $q , db ) {
             var isCordova = 0 !== location.href.indexOf( 'http' ) ,
                 factory   = {
-                    domain : isCordova ? 'http://wufazhuce.com' : 'https://dn-another-one.qbox.me' ,
+                    domain : isCordova ? 'http://wufazhuce.com' : 'https://dn-another-one.qbox.me' , // 为了能让网页跨域，我配置了一个代理
+                    picProxyDomain : 'https://dn-one-pic.qbox.me' , // 『一个』的图片做了防盗链，为了在网站上显示，我配置了一个代理
 
                     /**
                      * 通过 http 从远程服务器获取某期内容
@@ -279,7 +280,23 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                 qaAnswer( ( (document.querySelectorAll( '.cuestion-contenido' ) || [])[ 1 ] || emptyContent).textContent );
                 splitYearAndMonth( (document.querySelector( '.may' ) || emptyContent).textContent );
 
+                // 如果是在网页中运行，则将首页和东西的图片域名改为代理
+                if ( !isCordova ) {
+                    data.index.imgUrl = changeUrlDomain( data.index.imgUrl , factory.picProxyDomain );
+                    data.dx.imgUrl = changeUrlDomain( data.dx.imgUrl , factory.picProxyDomain );
+                }
+
                 return data;
+
+                /**
+                 * 更改网址的域名的辅助函数
+                 * @param {String} url - 要被更改的网址
+                 * @param {String} newDomain - 新域名
+                 * @returns {String}
+                 */
+                function changeUrlDomain( url , newDomain ) {
+                    return url.replace( /^https?:\/\/[^\/]+\// , newDomain + '/' );
+                }
 
                 function splitYearAndMonth( text ) {
                     var yearAndMonth;
@@ -342,6 +359,7 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                 vols : '&id,favourite'
             } );
             db.open();
+            //db.delete();
             return db;
         }
     ] )
@@ -366,6 +384,15 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                 }
             };
             return factory;
+        }
+    ] )
+    .controller( 'JumpController' , [
+        '$scope' , '$state' , '$ionicSideMenuDelegate' ,
+        function ( $scope , $state , $ionicSideMenuDelegate ) {
+            $scope.go = function () {
+                $ionicSideMenuDelegate.toggleLeft( false );
+                $state.go( 'vol-detail' , { id : $scope.id } );
+            };
         }
     ] )
     .controller( 'NavController' , [
