@@ -1,7 +1,7 @@
 <ion-view view-title="缓存列表" ng-controller="CachedListController">
     <ion-header-bar>
         <div class="buttons">
-            <button class="button">返回</button>
+            <button class="button button-clear" on-tap="goBack()"><i class="icon ion-ios-arrow-left"></i>返回</button>
         </div>
         <h1 class="title">缓存列表</h1>
 
@@ -15,8 +15,14 @@
                 第{{item.id}}期：{{item.index.imgTitle}}
             </a>
             <a class="item item-image" ng-href="{{getVolLink(item.id)}}">
-                <img ng-src="{{item.index.imgUrl}}">
+                <div lazyload-src="{{item.index.imgUrl}}" style="height: 295px; line-height: 295px;text-align: center;">
+                    <span>正在加载……</span><!--考虑在 on-scroll-complete 的时候再替换成 img-->
+                </div>
             </a>
+
+            <div class="item item-text-wrap">
+                {{item.index.text}}
+            </div>
 
             <div class="item item-divider">
                 喜欢

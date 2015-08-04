@@ -445,6 +445,10 @@ angular.module( 'AppAnotherOne' , [ 'ionic' ] )
                 loading : true
             };
 
+            $scope.goBack = function () {
+                history.back();
+            };
+
             $scope.getVolLink = function ( id ) {
                 return $state.href( 'vol.detail' , { id : id } );
             };
