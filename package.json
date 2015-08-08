@@ -1,0 +1,13 @@
+{
+  "name" : "another-one" ,
+  "version" : "2.0.0" ,
+  "devDependencies" : {
+    "gulp" : "*" ,
+    "gulp-uglify" : "*" ,
+    "gulp-rev-all" : "*" ,
+    "gulp-minify-css" : "*" ,
+    "gulp-htmlmin" : "*" ,
+    "gulp-concat" : "*" ,
+    "del" : "*"
+  }
+}
