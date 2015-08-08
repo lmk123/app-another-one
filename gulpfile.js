@@ -1,14 +1,15 @@
 var SRC        = './app' ,
     CDN        = './www' ,
+    BundlePath = './bundle.js' ,
     paths      = {
-        js : [ SRC + '/**/*.js' , '!' + SRC + '/js/bundle.js' ] ,
+        js : [ SRC + '/**/*.js' , '!' + SRC + '/' + BundlePath ] ,
         cssFiles : [ SRC + '/**/*.css' ] ,
         htmlFiles : SRC + '/**/*.html' ,
         imageFiles : SRC + '/**/*.{png,jpg,gif}' ,
         copyFiles : [ SRC + '/**/*' , '!' + SRC + '/**/*.{js,css,html}' ]
     } ,
 
-    concatList = JSON.parse( require( 'fs' ).readFileSync( SRC + '/js/bundle.js' , { encoding : 'utf8' } ).match( /\[[^\]]+\]/ )[ 0 ].replace( /'/g , '"' ) ).map( function ( s ) {
+    concatList = JSON.parse( require( 'fs' ).readFileSync( SRC + '/' + BundlePath , { encoding : 'utf8' } ).match( /\[[^\]]+\]/ )[ 0 ].replace( /'/g , '"' ) ).map( function ( s ) {
         var toUrl = SRC + '/' + s;
         paths.js.push( '!' + toUrl );
         return toUrl;
@@ -67,7 +68,7 @@ function copy() {
 
 function bundle() {
     return gulp.src( concatList )
-        .pipe( concat( './js/bundle.js' ) )
+        .pipe( concat( BundlePath ) )
         .pipe( minifyJS() )
         .pipe( gulp.dest( CDN ) );
 }

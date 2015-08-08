@@ -6,7 +6,8 @@
             'vendor/angular/angular-animate.js' ,
             'vendor/angular/angular-sanitize.js' ,
             'vendor/angular-ui/angular-ui-router.js' ,
-            'vendor/ionic/js/ionic-angular.js'
+            'vendor/ionic/js/ionic-angular.js' ,
+            'js/app.js'
         ] ,
         s      = '';
 
