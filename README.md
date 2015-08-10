@@ -28,7 +28,7 @@
 4. 初始化为一个 git 仓库：`git init`
 5. 添加一个远程仓库地址：`git remote add origin https://github.com/lmk123/app-another-one.git`（这里的地址换成第一步你 Fork 之后的项目地址）
 6. 下载源码：`git fetch --all`
-7. 重置仓库状态：`git reset --hard origin/master-ionic`
+7. 重置仓库状态：`git reset --hard origin/master`
 
 现在你就可以开始开发并提交代码了 :)
 
