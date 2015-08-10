@@ -1,5 +1,6 @@
 (function () {
     var concat = [
+            'vendor/indexeddbshim.js' ,
             'vendor/Dexie.js' ,
             'vendor/ionic/js/ionic.js' ,
             'vendor/angular/angular.js' ,

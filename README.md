@@ -11,7 +11,7 @@
 
 ## 设备支持程度
 
-『另一个』使用 [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) 来保存数据，所以它能在所有[支持 IndexedDB 的浏览器（及设备）](http://caniuse.com/#feat=indexeddb)上运行。
+『另一个』能在所有[支持 IndexedDB 或 WebSQL 的浏览器（及设备）](http://caniuse.com/#feat=indexeddb,sql-storage)上运行。
 
 ## 项目中用到的技术
 
