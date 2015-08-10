@@ -20,6 +20,18 @@
  + [ui-router](https://github.com/angular-ui/ui-router)
  + [Dexie.js](https://github.com/dfahlander/Dexie.js)
 
+## 参与开发
+
+1. Fork 这个项目
+2. 在本地开始一个新的 Ionic 项目：`ionic start app-another-one blank`
+3. 切换到新建的目录里：`cd app-other-one`
+4. 初始化为一个 git 仓库：`git init`
+5. 添加一个远程仓库地址：`git remote add origin https://github.com/lmk123/app-another-one.git`（这里的地址换成第一步你 Fork 之后的项目地址）
+6. 下载源码：`git fetch --all`
+7. 重置仓库状态：`git reset --hard origin/master-ionic`
+
+现在你就可以开始开发并提交代码了 :)
+
 ## 声明
 这个程序仅仅是出于兴趣爱好及学习而被开发出来的，里面所有的内容都归[『一个』](http://www.wufazhuce.com/one/)所有。
  
