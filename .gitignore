@@ -3,3 +3,6 @@ platforms/
 plugins/
 hooks/
 www/
+app/**/*.js
+app/**/*.css
+app/vendor/

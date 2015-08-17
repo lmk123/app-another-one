@@ -1,0 +1,9 @@
+{
+  "name" : "app-another-one" ,
+  "private" : "true" ,
+  "devDependencies" : {
+    "ionic" : "*" ,
+    "dexie" : "*" ,
+    "IndexedDBShim" : "*"
+  }
+}

@@ -7,7 +7,10 @@
     "gulp-minify-css" : "^1.2.0" ,
     "gulp-htmlmin" : "^1.1.3" ,
     "gulp-concat" : "^2.6.0" ,
-    "del" : "^1.2.0"
+    "del" : "^1.2.0" ,
+    "gulp-sass" : "^2.0.4" ,
+    "gulp-babel" : "^5.2.0" ,
+    "gulp-watch" : "^4.3.4"
   } ,
   "cordovaPlugins" : [
     "cordova-plugin-device" ,
