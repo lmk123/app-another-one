@@ -13,13 +13,6 @@
 
 『另一个』能在所有[支持 IndexedDB 或 WebSQL 的浏览器（及设备）](http://caniuse.com/#feat=indexeddb,sql-storage)上运行。
 
-## 项目中用到的技术
-
- + [Ionic](http://ionicframework.com/)
- + [AngularJS](https://angularjs.org/)
- + [ui-router](https://github.com/angular-ui/ui-router)
- + [Dexie.js](https://github.com/dfahlander/Dexie.js)
-
 ## 参与开发
 
 由于本项目使用到了多种技术与辅助工具，所以搭建开发环境会比较麻烦。
@@ -32,15 +25,25 @@
 
 ### Clone 此项目
 
-1. Fork 这个项目
-2. （可选 - 如果你跳过了先决条件里的第三步，则创建一个文件夹即可）在本地开始一个新的 Ionic 项目：`ionic start app-another-one blank`
-3. 切换到新建的目录里：`cd app-other-one`
-4. 初始化为一个 git 仓库：`git init`
-5. 添加一个远程仓库地址：`git remote add origin https://github.com/lmk123/app-another-one.git`（这里的地址换成第一步你 Fork 之后的项目地址）
-6. 下载源码：`git fetch --all`
-7. 重置仓库状态：`git reset --hard origin/master`
-8. 安装 Bower 依赖：`bower install`
-9. 安装 npm 依赖：`npm install`
+一、首先，你需要 Fork 这个项目。下面的步骤里出现的 git 地址都替换为你 Fork 此项目之后的地址。
+
+二、然后，根据你的需要二选一：
+ 
+如果你不需要生成安装文件，则创建一个空文件夹并在里面执行 `git clone https://github.com/lmk123/app-another-one.git` 即可，后面的步骤都不需要了；
+ 
+如果你想自己生成安装文件，那过程会比较麻烦：
+
+1. 在本地开始一个新的 Ionic 项目：`ionic start app-another-one blank`
+2. 切换到新建的目录里：`cd app-other-one`
+3. 初始化为一个 git 仓库：`git init`
+4. 添加一个远程仓库地址：`git remote add origin https://github.com/lmk123/app-another-one.git`
+5. 下载源码：`git fetch --all`
+6. 重置仓库状态：`git reset --hard origin/master`
+
+三、最后，安装项目依赖：
+
+ + 安装 Bower 依赖：`bower install`
+ + 安装 npm 依赖：`npm install`
 
 现在你就可以开始开发并提交代码了 :)
 
